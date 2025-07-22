@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Comment List
+{% endblock %}
+
+{% block body %}
+    <h1>Comment List</h1>
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{{ path('comment_create')}}" class="btn btn-primary">Add new</a>
+        </div>
+    </div>
+    {% if pagination is defined and pagination.items|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'comment.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Email', 'comment.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Nick', 'comment.nick') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Content', 'comment.content') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in pagination.items %}
+                <tr>
+                    <td>{{ comment.id }}</td>
+                    <td>{{ comment.email }}</td>
+                    <td>{{ comment.nick }}</td>
+                    <td>{{ comment.content }}</td>
+                    <td>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('comment_edit', {id: comment.id}) }}" title="Edit" class="btn btn-warning">Edit</a>
+                            <a href="{{ path('comment_delete', {id: comment.id}) }}" title="Delete" class="btn btn-danger">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'No comments found.'
+        } %}
+    {% endif %}
+{% endblock %}

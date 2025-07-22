@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'category.detail'|trans }} {{ category.id|default('') }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'category.detail'|trans }} {{ category.id|default('') }}</h1>
+
+    {% if category is defined %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'ID'|trans }}</dt>
+            <dd>{{ category.id }}</dd>
+            <dt>{{ 'Created At'|trans }}</dt>
+            <dd>{{ category.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'Updated At'|trans }}</dt>
+            <dd>{{ category.updatedAt|format_date('long') }}</dd>
+            <dt>{{ 'Title'|trans }}</dt>
+            <dd>{{ category.title }}</dd>
+        </dl>
+
+        <p>
+            <a href="{{ path('category_index') }}" title="{{ 'backtolist'|trans }}">
+                {{ 'backtolist'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'Category not found.'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

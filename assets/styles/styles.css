@@ -1,0 +1,9 @@
+.right_element {
+    background-color: navy !important; /* Force the background color to navy */
+    color: white; /* Optional: Set text color to white for better contrast */
+    padding: 10px 20px; /* Optional: Add padding for better appearance */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    text-align: center; /* Optional: Center the text */
+    display: inline-block; /* Ensure it behaves like a button */
+    text-decoration: none; /* Remove underline from the text */
+}

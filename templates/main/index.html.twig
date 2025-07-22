@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Blog'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="title_of_page">
+            <h1>{{ 'Projekt Blog'|trans }}</h1>
+        </div>
+
+        <div class="navigation">
+            <ul>
+                <li><a href="{{ path('post_index') }}" class="btn btn-outline-primary">{{ 'posts'|trans }}</a></li>
+                <li><a href="{{ path('category_index') }}" class="btn btn-outline-primary">{{ 'categories'|trans }}</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('user_index') }}" class="btn btn-outline-primary">{{ 'users'|trans }}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

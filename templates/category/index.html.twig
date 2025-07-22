@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'category.list'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'category.list'|trans }}</h1>
+
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{{ path('category_create') }}" class="btn btn-primary">{{ 'category.add'|trans }}</a>
+        </div>
+    </div>
+
+    {% if pagination is defined and pagination.items|length %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'category.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created At', 'category.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'category.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title', 'category.title') }}</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in pagination.items %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ category.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ category.title }}</td>
+                    <td>
+                        <a href="{{ path('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
+                            <a href="{{ path('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'No categories found.'
+        } %}
+    {% endif %}
+{% endblock %}

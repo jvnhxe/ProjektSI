@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'category.edit'|trans }} {{ category.id|default('') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'category.edit'|trans }} {{ category.id|default('') }}</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="Save" class="btn btn-primary"/>
+    </div>
+    <div class="form-group row float-sm-left">
+        <a href="{{ path('category_index') }}" class="btn btn-link">
+            {{ 'backtolist'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

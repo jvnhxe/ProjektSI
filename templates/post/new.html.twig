@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Post{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Create New Post</h1>
+
+        {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+        <div class="mb-3">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.content) }}
+            {{ form_widget(form.content) }}
+            {{ form_errors(form.content) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.imageFile) }}
+            {{ form_widget(form.imageFile) }}
+            {{ form_errors(form.imageFile) }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Create Post</button>
+        <a href="{{ path('post_index') }}" class="btn btn-secondary">Cancel</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

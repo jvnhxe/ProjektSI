@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.user_edit'|trans }} {{ user.id|default('') }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.user_edit'|trans }} {{ user.id|default('') }}</h1>
+    {{ form_start(form, { method: 'PUT', action: url('user_edit', {id: user.id}) }) }}
+    {{ form_widget(form) }}
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary" />
+    </div>
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('user_password', {id: user.id}) }}" class="btn btn-primary">{{ 'action.change_password'|trans }}</a>
+        <a href="{{ url('user_index') }}" class="btn btn-link">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

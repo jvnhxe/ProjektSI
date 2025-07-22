@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Działania</target>
+            </trans-unit>
+            <trans-unit id="label.id">
+                <source>label.id</source>
+                <target>Id</target>
+            </trans-unit>
+            <trans-unit id="ID">
+                <source>ID</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="Created At">
+                <source>Created At</source>
+                <target>Stworzono</target>
+            </trans-unit>
+            <trans-unit id="Updated At">
+                <source>Updated At</source>
+                <target>Zmieniono</target>
+            </trans-unit>
+            <trans-unit id="Title">
+                <source>Title</source>
+                <target>Tytuł</target>
+            </trans-unit>
+            <trans-unit id="Category not found.">
+                <source>Category not found.</source>
+                <target>Nie znaleziono kategorii.</target>
+            </trans-unit>
+            <trans-unit id="Blog">
+                <source>Blog</source>
+                <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="title.user_create">
+                <source>title.user_create</source>
+                <target>Stwórz użytkownika</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Usuń użytkownika</target>
+            </trans-unit>
+            <trans-unit id="Users List">
+                <source>Users List</source>
+                <target>Lista użytkowników</target>
+            </trans-unit>
+            <trans-unit id="Email">
+                <source>Email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="Role">
+                <source>Role</source>
+                <target>Rola</target>
+            </trans-unit>
+            <trans-unit id="No users found.">
+                <source>No users found.</source>
+                <target>Nie znaleziono użytkowników.</target>
+            </trans-unit>
+            <trans-unit id="Save">
+                <source>Save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="Back to list">
+                <source>Back to list</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="Edit">
+                <source>Edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="User not found.">
+                <source>User not found.</source>
+                <target>Nie znaleziono użytkownika.</target>
+            </trans-unit>
+            <trans-unit id="Roles">
+                <source>Roles</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="Add New">
+                <source>Add New</source>
+                <target>Dodaj</target>
+            </trans-unit>
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>Tytuł</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Treść</target>
+            </trans-unit>
+            <trans-unit id="message.empty_commentlist">
+                <source>message.empty_commentlist</source>
+                <target>Brak komentarzy.</target>
+            </trans-unit>
+            <trans-unit id="message.post_not_found">
+                <source>message.post_not_found</source>
+                <target>Nie znaleziono posta.</target>
+            </trans-unit>
+            <trans-unit id="message.edited_successfully">
+                <source>message.edited_successfully</source>
+                <target>Pomyślnie edytowano.</target>
+            </trans-unit>
+            <trans-unit id="message.created_successfully">
+                <source>message.created_successfully</source>
+                <target>Utworzono pomyślnie.</target>
+            </trans-unit>
+            <trans-unit id="message.deleted_successfully">
+                <source>message.deleted_successfully</source>
+                <target>Pomyślnie usunięto.</target>
+            </trans-unit>
+
+            <trans-unit id="title.post_details">
+                <source>title.post_details</source>
+                <target>Post #%id%</target>
+            </trans-unit>
+            <trans-unit id="title.post_list">
+                <source>title.post_list</source>
+                <target>Lista postów</target>
+            </trans-unit>
+            <trans-unit id="label.created_at">
+                <source>label.created_at</source>
+                <target>Utworzono</target>
+            </trans-unit>
+            <trans-unit id="label.updated_at">
+                <source>label.updated_at</source>
+                <target>Zmodyfikowano</target>
+            </trans-unit>
+            <trans-unit id="label.category">
+                <source>label.category</source>
+                <target>Kategoria</target>
+            </trans-unit>
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Pokaż</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="title.post_edit">
+                <source>title.post_edit</source>
+                <target>Edytuj post</target>
+            </trans-unit>
+            <trans-unit id="title.post_delete">
+                <source>title.post_delete</source>
+                <target>Usuń post</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>Utwórz post</target>
+            </trans-unit>
+            <trans-unit id="message.form_error">
+                <source>message.form_error</source>
+                <target>Błędny formularz</target>
+            </trans-unit>
+            <trans-unit id="title.comment_list">
+                <source>title.comment_list</source>
+                <target>Komentarze</target>
+            </trans-unit>
+            <trans-unit id="action.comment_create">
+                <source>action.comment_create</source>
+                <target>Dodaj komentarz</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Zmień hasło</target>
+            </trans-unit>
+            <trans-unit id="action.login">
+                <source>action.login</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="message.record_not_found">
+                <source>message.record_not_found</source>
+                <target>Nie znaleziono rekordu!</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="message.category_contains_tasks">
+                <source>message.category_contains_tasks</source>
+                <target>Kategoria zawiera posty</target>
+            </trans-unit>
+            <trans-unit id="message.updated_successfully">
+                <source>message.updated_successfully</source>
+                <target>Zmiana się udała</target>
+            </trans-unit>
+            <trans-unit id="welcome">
+                <source>welcome</source>
+                <target>Witaj</target>
+            </trans-unit>
+            <trans-unit id="mainpage">
+                <source>mainpage</source>
+                <target>Strona Główna</target>
+            </trans-unit>
+            <trans-unit id="posts">
+                <source>posts</source>
+                <target>Posty</target>
+            </trans-unit>
+            <trans-unit id="users">
+                <source>users</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="categories">
+                <source>categories</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="logout">
+                <source>logout</source>
+                <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="category.create">
+                <source>category.create</source>
+                <target>Stwórz Kategorię</target>
+            </trans-unit>
+            <trans-unit id="category.delete">
+                <source>category.delete</source>
+                <target>Usuń Kategorię</target>
+            </trans-unit>
+            <trans-unit id="category.edit">
+                <source>category.edit</source>
+                <target>Edytuj Kategorię</target>
+            </trans-unit>
+            <trans-unit id="category.list">
+                <source>category.list</source>
+                <target>Lista Kategorii</target>
+            </trans-unit>
+            <trans-unit id="users.list">
+                <source>users.list</source>
+                <target>Lista Użytkowników</target>
+            </trans-unit>
+            <trans-unit id="category.detail">
+                <source>category.detail</source>
+                <target>Szczegóły Kategorii</target>
+            </trans-unit>
+            <trans-unit id="category.add">
+                <source>category.add</source>
+                <target>Dodaj Kategorię</target>
+            </trans-unit>
+            <trans-unit id="backtolist">
+                <source>backtolist</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="remember">
+                <source>remember</source>
+                <target>Zapamiętaj mnie</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

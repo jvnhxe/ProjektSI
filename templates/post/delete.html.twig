@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.post_delete'|trans }} {{ post.id|default('') }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'title.post_delete'|trans }} {{ post.id|default('') }}</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary" />
+    </div>
+    <div class="form-group row float-sm-left">
+        <a href="{{ path('post_index') }}" class="btn btn-link">
+            {{ 'action.back_to_list'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+    {% if message is defined %}
+        <div class="alert alert-success" role="alert">
+            {{ 'message.deleted_successfully'|trans }}
+        </div>
+    {% endif %}
+{% endblock %}
