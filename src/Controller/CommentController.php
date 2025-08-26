@@ -13,20 +13,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class CommentController.
  */
-#[Route('/comment')]
+#[\Symfony\Component\Routing\Attribute\Route('/comment')]
 class CommentController extends AbstractController
 {
     /**
      * @var CommentServiceInterface Comment Service Interface
      */
-    private CommentServiceInterface $commentService;
+    private readonly CommentServiceInterface $commentService;
 
     /**
      * Constructor.
@@ -47,7 +46,7 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request, Post $post): Response
     {
         //        $user = $this->getUser();
@@ -82,7 +81,7 @@ class CommentController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Comment $comment): Response
     {

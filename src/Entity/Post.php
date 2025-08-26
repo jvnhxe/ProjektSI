@@ -149,27 +149,47 @@ class Post
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * Sets the uploaded image file.
+     *
+     * @param File|null $imageFile the uploaded file instance
+     */
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
-        if (null !== $imageFile) {
+        if ($imageFile instanceof File) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
 
+    /**
+     * Gets the uploaded image file.
+     *
+     * @return File|null the uploaded file instance
+     */
     public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
+    /**
+     * Sets the image file name.
+     *
+     * @param string|null $imageName the image file name
+     */
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
     }
 
+    /**
+     * Gets the image file name.
+     *
+     * @return string|null the image file name
+     */
     public function getImageName(): ?string
     {
         return $this->imageName;

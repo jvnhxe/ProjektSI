@@ -30,19 +30,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('/post')]
 class PostController extends AbstractController
 {
-    private readonly PostServiceInterface $postService;
-    private readonly TranslatorInterface $translator;
-
     /**
      * Constructor.
      *
      * @param PostServiceInterface $postService Post service
      * @param TranslatorInterface  $translator  Translator
      */
-    public function __construct(PostServiceInterface $postService, TranslatorInterface $translator)
+    public function __construct(private readonly PostServiceInterface $postService, private readonly TranslatorInterface $translator)
     {
-        $this->postService = $postService;
-        $this->translator = $translator;
     }
 
     /**
@@ -228,13 +223,21 @@ class PostController extends AbstractController
         );
     }
 
+    /**
+     * Handles the search request for posts by title.
+     *
+     * @param Request        $request        the current HTTP request
+     * @param PostRepository $postRepository the repository used to search posts
+     *
+     * @return Response the rendered search results page
+     */
     #[Route('/posts/search', name: 'post_search', methods: ['GET'])]
     public function search(Request $request, PostRepository $postRepository): Response
     {
         $query = trim($request->query->get('q', ''));
         $posts = [];
 
-        if (!empty($query)) {
+        if ('' !== $query && '0' !== $query) {
             $posts = $postRepository->searchByTitle($query);
         }
 

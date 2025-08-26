@@ -179,6 +179,23 @@ class PostRepository extends ServiceEntityRepository
     }
 
     /**
+     * Finds posts by their title.
+     *
+     * @param string $searchTerm the term to search for in post titles
+     *
+     * @return array the list of posts matching the search term
+     */
+    public function searchByTitle(string $searchTerm): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.title LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * Get or create new query builder.
      *
      * @param QueryBuilder|null $queryBuilder Query builder
@@ -207,16 +224,4 @@ class PostRepository extends ServiceEntityRepository
 
         return $queryBuilder;
     }
-
-    public function searchByTitle(string $searchTerm): array
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.title LIKE :searchTerm')
-            ->setParameter('searchTerm', '%' . $searchTerm . '%')
-            ->orderBy('p.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-
 }
