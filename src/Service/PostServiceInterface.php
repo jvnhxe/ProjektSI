@@ -41,18 +41,12 @@ interface PostServiceInterface
     public function delete(Post $post): void;
 
     /**
-     * Get paginated list for given author (owner view).
+     * Get paginated list for the given author (owner view).
      *
-     * @param int                    $page
-     * @param User                   $author
-     * @param PostListInputFiltersDto $filters
-     * @param string|null            $status  'draft'|'published'|null (null = wszystkie)
+     * @param int                     $page    Page number (>= 1)
+     * @param User                    $author  Owner of posts
+     * @param PostListInputFiltersDto $filters Filters from request
+     * @param string|null             $status  'draft'|'published' or null for all
      */
-    public function getPaginatedListForAuthor(
-        int $page,
-        User $author,
-        PostListInputFiltersDto $filters,
-        ?string $status = null
-    ): PaginationInterface;
-
+    public function getPaginatedListForAuthor(int $page, User $author, PostListInputFiltersDto $filters, ?string $status = null): PaginationInterface;
 }

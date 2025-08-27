@@ -68,11 +68,11 @@ class PostRepository extends ServiceEntityRepository
     /**
      * Query posts for given author. Optionally filter by status ('draft'/'published').
      *
-     * @param User                    $author
-     * @param PostListFiltersDto      $filters
-     * @param string|null             $status
+     * @param User               $author  Author whose posts to query
+     * @param PostListFiltersDto $filters Filters for the list
+     * @param string|null        $status  'draft'|'published' or null for all
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAllByAuthor(User $author, PostListFiltersDto $filters, ?string $status = null): QueryBuilder
     {
@@ -86,7 +86,7 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter(':author', $author)
             ->orderBy('post.updatedAt', 'DESC');
 
-        if (null !== $status && in_array($status, ['draft','published'], true)) {
+        if (null !== $status && in_array($status, ['draft', 'published'], true)) {
             $qb->andWhere('post.status = :status')->setParameter(':status', $status);
         }
 

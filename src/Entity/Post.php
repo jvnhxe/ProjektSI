@@ -101,6 +101,9 @@ class Post
     #[Assert\Choice(choices: ['draft', 'published'])]
     private string $status = 'draft';
 
+    /**
+     * Post constructor: sets default values.
+     */
     public function __construct()
     {
         $this->postDate = new \DateTimeImmutable();
@@ -303,7 +306,6 @@ class Post
         $this->postDate = $postDate ?: new \DateTimeImmutable();
     }
 
-
     /**
      * Getter for status.
      *
@@ -323,5 +325,4 @@ class Post
     {
         $this->status = $status;
     }
-
 }

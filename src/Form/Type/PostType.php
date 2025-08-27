@@ -109,7 +109,6 @@ class PostType extends AbstractType
                 'required' => true,
             ]
         );
-
     }
 
     /**

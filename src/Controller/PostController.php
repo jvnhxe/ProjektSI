@@ -23,8 +23,6 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class PostController.
@@ -81,8 +79,8 @@ class PostController extends AbstractController
     public function show(Post $post, CommentRepository $commentRepository, PaginatorInterface $paginator, Request $request): Response
     {
 
-// Hide drafts from the public; allow author or admin to view
-        if (method_exists($post, 'getStatus') && $post->getStatus() !== 'published') {
+        // Hide drafts from the public; allow author or admin to view
+        if (method_exists($post, 'getStatus') && 'published' !== $post->getStatus()) {
             $user = $this->getUser();
             $isAuthor = method_exists($post, 'getAuthor') && $user && $post->getAuthor() === $user;
             if (!$this->isGranted('ROLE_ADMIN') && !$isAuthor) {
@@ -191,16 +189,19 @@ class PostController extends AbstractController
         );
     }
 
+    /**
+     * Wyświetla listę postów zalogowanego użytkownika (zakładka "Mój profil").
+     *
+     * @param PostListInputFiltersDto $filters Filtrowanie mapowane z query stringa
+     * @param Request                 $request Bieżące żądanie HTTP
+     */
     #[Route('/me/posts', name: 'post_my', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
-    public function my(
-        #[MapQueryString(resolver: PostListInputFiltersDtoResolver::class)] PostListInputFiltersDto $filters,
-        Request $request
-    ): Response {
+    public function my(#[MapQueryString(resolver: PostListInputFiltersDtoResolver::class)] PostListInputFiltersDto $filters, Request $request): Response
+    {
         /** @var User $user */
         $user = $this->getUser();
 
-        // page z domyślną wartością 1
         $page = max(1, $request->query->getInt('page', 1));
 
         // ?status=all|draft|published (opcjonalnie)

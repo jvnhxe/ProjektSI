@@ -61,12 +61,16 @@ class PostService implements PostServiceInterface
         );
     }
 
-    public function getPaginatedListForAuthor(
-        int $page,
-        User $author,
-        PostListInputFiltersDto $filters,
-        ?string $status = null
-    ): PaginationInterface {
+    /**
+     * Get paginated list for the given author (owner view).
+     *
+     * @param int                     $page    Page number (>= 1)
+     * @param User                    $author  Owner of posts
+     * @param PostListInputFiltersDto $filters Filters from request
+     * @param string|null             $status  'draft'|'published' or null for all
+     */
+    public function getPaginatedListForAuthor(int $page, User $author, PostListInputFiltersDto $filters, ?string $status = null): PaginationInterface
+    {
         $filters = $this->prepareFilters($filters);
 
         return $this->paginator->paginate(
@@ -75,7 +79,6 @@ class PostService implements PostServiceInterface
             self::PAGINATOR_ITEMS_PER_PAGE
         );
     }
-
 
     /**
      * Save entity.

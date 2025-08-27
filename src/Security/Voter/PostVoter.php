@@ -26,8 +26,8 @@ final class PostVoter extends Voter
     /**
      * Sprawdza, czy voter obsługuje dany atrybut i obiekt.
      *
-     * @param string      $attribute Atrybut (VIEW/EDIT/DELETE)
-     * @param mixed|null  $subject   Przedmiot głosowania (Post)
+     * @param string     $attribute Atrybut (VIEW/EDIT/DELETE)
+     * @param mixed|null $subject   Przedmiot głosowania (Post)
      *
      * @return bool Czy wspieramy to głosowanie
      */
@@ -74,7 +74,7 @@ final class PostVoter extends Voter
         $isAuthor = method_exists($subject, 'getAuthor') && $subject->getAuthor() === $user;
 
         return match ($attribute) {
-            self::VIEW   => $subject->getStatus() === 'published' || $isAuthor,
+            self::VIEW   => 'published' === $subject->getStatus() || $isAuthor,
             self::EDIT,
             self::DELETE => $isAuthor,
             default      => false,
