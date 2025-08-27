@@ -39,4 +39,20 @@ interface PostServiceInterface
      * @param Post $post Post entity
      */
     public function delete(Post $post): void;
+
+    /**
+     * Get paginated list for given author (owner view).
+     *
+     * @param int                    $page
+     * @param User                   $author
+     * @param PostListInputFiltersDto $filters
+     * @param string|null            $status  'draft'|'published'|null (null = wszystkie)
+     */
+    public function getPaginatedListForAuthor(
+        int $page,
+        User $author,
+        PostListInputFiltersDto $filters,
+        ?string $status = null
+    ): PaginationInterface;
+
 }

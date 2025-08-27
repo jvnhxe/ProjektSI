@@ -54,13 +54,43 @@ class PostRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial post.{id, createdAt, updatedAt, title, postDate}',
+                'partial post.{id, createdAt, updatedAt, title, postDate, status}',
                 'partial category.{id, title}'
             )
             ->join('post.category', 'category')
             ->orderBy('post.updatedAt', 'DESC');
 
+        $queryBuilder->andWhere('post.status = :status')->setParameter(':status', 'published');
+
         return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    /**
+     * Query posts for given author. Optionally filter by status ('draft'/'published').
+     *
+     * @param User                    $author
+     * @param PostListFiltersDto      $filters
+     * @param string|null             $status
+     *
+     * @return QueryBuilder
+     */
+    public function queryAllByAuthor(User $author, PostListFiltersDto $filters, ?string $status = null): QueryBuilder
+    {
+        $qb = $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial post.{id, createdAt, updatedAt, title, postDate, status}',
+                'partial category.{id, title}'
+            )
+            ->join('post.category', 'category')
+            ->andWhere('post.author = :author')
+            ->setParameter(':author', $author)
+            ->orderBy('post.updatedAt', 'DESC');
+
+        if (null !== $status && in_array($status, ['draft','published'], true)) {
+            $qb->andWhere('post.status = :status')->setParameter(':status', $status);
+        }
+
+        return $this->applyFiltersToList($qb, $filters);
     }
 
     /**
@@ -143,7 +173,7 @@ class PostRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial post.{id, createdAt, updatedAt, title, postDate}',
+                'partial post.{id, createdAt, updatedAt, title, postDate, status}',
                 'partial category.{id, title}'
             )
             ->join('post.category', 'category')
@@ -152,6 +182,8 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter('start_date', new \DateTime('-7 days'))
             ->setParameter('end_date', new \DateTime())
             ->orderBy('post.postDate', 'ASC');
+
+        $queryBuilder->andWhere('post.status = :status')->setParameter(':status', 'published');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
@@ -167,13 +199,15 @@ class PostRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial post.{id, createdAt, updatedAt, title, postDate}',
+                'partial post.{id, createdAt, updatedAt, title, postDate, status}',
                 'partial category.{id, title}'
             )
             ->join('post.category', 'category')
             ->where('post.postDate > :current_date')
             ->setParameter('current_date', new \DateTime())
             ->orderBy('post.postDate', 'ASC');
+
+        $queryBuilder->andWhere('post.status = :status')->setParameter(':status', 'published');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
@@ -190,6 +224,8 @@ class PostRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.title LIKE :searchTerm')
             ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->andWhere('p.status = :status')
+            ->setParameter('status', 'published')
             ->orderBy('p.createdAt', 'DESC')
             ->getQuery()
             ->getResult();

@@ -93,6 +93,14 @@ class Post
     /**
      * Constructor.
      */
+
+    /**
+     * Status: 'draft' or 'published'.
+     */
+    #[ORM\Column(length: 20, options: ['default' => 'draft'])]
+    #[Assert\Choice(choices: ['draft', 'published'])]
+    private string $status = 'draft';
+
     public function __construct()
     {
         $this->postDate = new \DateTimeImmutable();
@@ -294,4 +302,26 @@ class Post
     {
         $this->postDate = $postDate ?: new \DateTimeImmutable();
     }
+
+
+    /**
+     * Getter for status.
+     *
+     * @return string Status value
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * Setter for status.
+     *
+     * @param string $status Status value ('draft' or 'published')
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
 }

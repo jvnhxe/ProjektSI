@@ -8,6 +8,9 @@
             <div class="col-lg-8 mx-auto">
                 <h1>{{ post.title }}</h1>
 
+                {% set badge = post.status == 'published' ? 'success' : 'secondary' %}
+                <span class="badge bg-{{ badge }}">{{ post.status }}</span>
+
                 {% if post.imageName %}
                     <img src="{{ vich_uploader_asset(post, 'imageFile') }}"
                          class="img-fluid mb-4"

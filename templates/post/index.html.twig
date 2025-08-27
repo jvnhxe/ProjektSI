@@ -26,6 +26,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'post.title') }}</th>
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'post.postDate') }}</th>
+                <th>{{ 'label.status'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -42,6 +43,10 @@
                         </a>
                     </td>
                     <td>{{ post.postDate|date('Y/m/d H:i') }}</td>
+                    <td>
+                        {% set badge = post.status == 'published' ? 'success' : 'secondary' %}
+                        <span class="badge bg-{{ badge }}">{{ post.status }}</span>
+                    </td>
                     <td>
                         <a href="{{ path('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
                         <a href="{{ path('comment_create', {id: post.id}) }}" title="{{ 'action.comment_create'|trans }}" class="btn btn-info">{{ 'action.comment_create'|trans }}</a>

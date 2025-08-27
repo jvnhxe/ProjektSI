@@ -61,6 +61,22 @@ class PostService implements PostServiceInterface
         );
     }
 
+    public function getPaginatedListForAuthor(
+        int $page,
+        User $author,
+        PostListInputFiltersDto $filters,
+        ?string $status = null
+    ): PaginationInterface {
+        $filters = $this->prepareFilters($filters);
+
+        return $this->paginator->paginate(
+            $this->postRepository->queryAllByAuthor($author, $filters, $status),
+            $page,
+            self::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+
     /**
      * Save entity.
      *

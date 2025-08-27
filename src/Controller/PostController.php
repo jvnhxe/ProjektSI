@@ -23,6 +23,8 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class PostController.
@@ -78,6 +80,16 @@ class PostController extends AbstractController
     #[Route('/post/{id}', name: 'post_show', methods: ['GET'])]
     public function show(Post $post, CommentRepository $commentRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
+// Hide drafts from the public; allow author or admin to view
+        if (method_exists($post, 'getStatus') && $post->getStatus() !== 'published') {
+            $user = $this->getUser();
+            $isAuthor = method_exists($post, 'getAuthor') && $user && $post->getAuthor() === $user;
+            if (!$this->isGranted('ROLE_ADMIN') && !$isAuthor) {
+                throw $this->createNotFoundException();
+            }
+        }
+
         $queryBuilder = $commentRepository->queryAllByPost($post);
         $page = $request->query->getInt('page', 1);
 
@@ -144,7 +156,7 @@ class PostController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'post_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('EDIT', subject: 'post')]
     public function edit(Request $request, Post $post): Response
     {
         $form = $this->createForm(
@@ -179,6 +191,30 @@ class PostController extends AbstractController
         );
     }
 
+    #[Route('/me/posts', name: 'post_my', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
+    public function my(
+        #[MapQueryString(resolver: PostListInputFiltersDtoResolver::class)] PostListInputFiltersDto $filters,
+        Request $request
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // page z domyślną wartością 1
+        $page = max(1, $request->query->getInt('page', 1));
+
+        // ?status=all|draft|published (opcjonalnie)
+        $statusParam = $request->query->get('status');
+        $status = \in_array($statusParam, ['draft', 'published'], true) ? $statusParam : null;
+
+        $pagination = $this->postService->getPaginatedListForAuthor($page, $user, $filters, $status);
+
+        return $this->render('post/my.html.twig', [
+            'pagination' => $pagination,
+            'status' => $statusParam ?? 'all',
+        ]);
+    }
+
     /**
      * Delete action.
      *
@@ -188,7 +224,7 @@ class PostController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'post_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('DELETE', subject: 'post')]
     public function delete(Request $request, Post $post): Response
     {
         $form = $this->createForm(

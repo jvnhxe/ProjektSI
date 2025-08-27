@@ -58,6 +58,8 @@ class PostFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $author = $this->getRandomReference('users');
             $post->setAuthor($author);
 
+            $post->setStatus('published');
+
             return $post;
         });
 

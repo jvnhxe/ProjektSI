@@ -32,6 +32,10 @@
                         </form>
                     </div>
                     <a href="{{ url('app_logout') }}"><div class="btn btn-outline-primary">{{ 'logout'|trans }}</div></a>
+                    {% set isActive = app.request.attributes.get('_route') starts with 'post_my' %}
+                    <a class="nav-link {{ isActive ? 'active' }}" href="{{ path('post_my', { page: 1 }) }}">
+                        Mój profil
+                    </a>
                 </div>
             </div>
         </nav>

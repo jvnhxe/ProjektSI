@@ -12,6 +12,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -95,6 +96,20 @@ class PostType extends AbstractType
                 'help' => 'Upload an image for your post (JPG, PNG, GIF formats supported)',
             ]
         );
+
+        $builder->add(
+            'status',
+            ChoiceType::class,
+            [
+                'label' => 'Status',
+                'choices' => [
+                    'Szkic' => 'draft',
+                    'Opublikowany' => 'published',
+                ],
+                'required' => true,
+            ]
+        );
+
     }
 
     /**
