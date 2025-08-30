@@ -87,8 +87,9 @@ class Post
     #[Vich\UploadableField(mapping: 'post_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $imageName = null;
+
 
     /**
      * Constructor.

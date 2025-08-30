@@ -13,9 +13,10 @@
 
                 {% if post.imageName %}
                     <img src="{{ vich_uploader_asset(post, 'imageFile') }}"
-                         class="img-fluid mb-4"
-                         alt="{{ post.title }}">
+                         alt="{{ post.title }}"
+                         class="img-fluid">
                 {% endif %}
+
 
                 <div class="mb-3">
                     <small class="text-muted">Published on {{ post.createdAt|date('F j, Y') }}</small>
