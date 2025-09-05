@@ -6,13 +6,17 @@
                 <source>label.actions</source>
                 <target>Działania</target>
             </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target>Brak</target>
+            </trans-unit>
             <trans-unit id="label.id">
                 <source>label.id</source>
                 <target>Id</target>
             </trans-unit>
             <trans-unit id="ID">
                 <source>ID</source>
-                <target>ID</target>
+                <target state="translated">ID</target>
             </trans-unit>
             <trans-unit id="Created At">
                 <source>Created At</source>
@@ -32,11 +36,15 @@
             </trans-unit>
             <trans-unit id="Blog">
                 <source>Blog</source>
-                <target>Blog</target>
+                <target state="translated">Blog</target>
             </trans-unit>
             <trans-unit id="title.user_create">
                 <source>title.user_create</source>
                 <target>Stwórz użytkownika</target>
+            </trans-unit>
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Edytuj użytkownika</target>
             </trans-unit>
             <trans-unit id="title.user_delete">
                 <source>title.user_delete</source>
@@ -48,7 +56,7 @@
             </trans-unit>
             <trans-unit id="Email">
                 <source>Email</source>
-                <target>Email</target>
+                <target state="translated">Email</target>
             </trans-unit>
             <trans-unit id="Role">
                 <source>Role</source>
@@ -142,6 +150,10 @@
             <trans-unit id="action.delete">
                 <source>action.delete</source>
                 <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="action.delete.comment">
+                <source>action.delete.comment</source>
+                <target>Usuń komentarz</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -247,6 +259,10 @@
                 <source>users.list</source>
                 <target>Lista Użytkowników</target>
             </trans-unit>
+            <trans-unit id="users.details">
+                <source>users.details</source>
+                <target>Szczegóły użytkownika</target>
+            </trans-unit>
             <trans-unit id="category.detail">
                 <source>category.detail</source>
                 <target>Szczegóły Kategorii</target>
@@ -262,6 +278,66 @@
             <trans-unit id="remember">
                 <source>remember</source>
                 <target>Zapamiętaj mnie</target>
+            </trans-unit>
+            <trans-unit id="myprofile">
+                <source>myprofile</source>
+                <target>Mój profil</target>
+            </trans-unit>
+            <trans-unit id="Projekt Blog">
+                <source>Projekt Blog</source>
+                <target>Projekt Blog</target>
+            </trans-unit>
+            <trans-unit id="search_posts">
+                <source>search_posts</source>
+                <target>Wyszukaj posty</target>
+            </trans-unit>
+            <trans-unit id="search">
+                <source>search</source>
+                <target>Sprawdź</target>
+            </trans-unit>
+            <trans-unit id="image">
+                <source>image</source>
+                <target>Załącznik</target>
+            </trans-unit>
+            <trans-unit id="form_post_image_help">
+                <source>form.post.image_help</source>
+                <target>Prześlij obraz do wpisu (obsługiwane formaty: JPG, PNG, GIF)</target>
+            </trans-unit>
+            <trans-unit id="label.nick">
+                <source>label.nick</source>
+                <target>Nick</target>
+            </trans-unit>
+            <trans-unit id="label.status">
+                <source>label.status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="no_posts">
+                <source>no_posts</source>
+                <target>Brak postów</target>
+            </trans-unit>
+            <trans-unit id="data">
+                <source>data</source>
+                <target>Data</target>
+            </trans-unit>
+            <trans-unit id="myposts">
+                <source>myposts</source>
+                <target>Moje posty</target>
+            </trans-unit>
+            <trans-unit id="wszystkie">
+                <source>wszystkie</source>
+                <target>Wszystkie</target>
+            </trans-unit>
+            <trans-unit id="szkice">
+                <source>szkice</source>
+                <target>Szkice</target>
+            </trans-unit>
+            <trans-unit id="Szkic">
+                <source>Szkic</source>
+                <target>Szkic</target>
+            </trans-unit>
+            <trans-unit id="Opublikowany">
+                <source>Opublikowany</source>
+                <target>Opublikowany</target>
             </trans-unit>
 
         </body>

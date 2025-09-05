@@ -42,7 +42,7 @@ class CommentType extends AbstractType
             'email',
             TextType::class,
             [
-                'label' => 'label.email',
+                'label' => 'Email',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]

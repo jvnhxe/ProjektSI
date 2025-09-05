@@ -5,9 +5,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Search Posts</h1>
-
-        {# Search Form #}
+        <h1>{{ 'search_posts'|trans }}</h1>
         <div class="search-panel mb-4">
             <form method="GET" action="{{ path('post_search') }}">
                 <div class="input-group">
@@ -15,11 +13,9 @@
                            class="form-control"
                            name="q"
                            value="{{ query }}"
-                           placeholder="Search posts by title..."
+                           placeholder="{{ 'search_posts'|trans }}"
                            autocomplete="off">
-                    <button class="btn btn-primary" type="submit">
-                        Search
-                    </button>
+                    <button class="btn btn-primary" type="submit">{{ 'search'|trans }}</button>
                 </div>
             </form>
         </div>

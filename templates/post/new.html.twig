@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1>Create New Post</h1>
+        <h1>{{ 'templates.post.new.html.twig.create_new_post'|trans }}</h1>
 
         {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
         <div class="mb-3">
@@ -39,8 +39,8 @@
 
         {{ form_row(form.status) }}
 
-        <button type="submit" class="btn btn-success">Create Post</button>
-        <a href="{{ path('post_index') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-success">{{ 'templates.post.new.html.twig.create_post'|trans }}</button>
+        <a href="{{ path('post_index') }}" class="btn btn-secondary">{{ 'templates.post.new.html.twig.cancel'|trans }}</a>
         {{ form_end(form) }}
     </div>
 {% endblock %}

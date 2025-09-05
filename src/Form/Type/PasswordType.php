@@ -32,7 +32,7 @@ class PasswordType extends AbstractType
     {
         $builder
             ->add('password', BasePasswordType::class, [
-                'label' => 'Password',
+                'label' => 'label.password',
                 'required' => true,
             ]);
     }

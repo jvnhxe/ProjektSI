@@ -5,31 +5,30 @@
 {% block body %}
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h1>Moje posty</h1>
-            <a href="{{ path('post_create') }}" class="btn btn-primary">Dodaj nowy</a>
+            <h1>{{ 'myposts'|trans }}</h1>
+            <a href="{{ path('post_create') }}" class="btn btn-primary">{{ 'action.create_post'|trans }}</a>
         </div>
 
         <form method="get" class="mb-3">
             <div class="row g-2">
                 <div class="col-auto">
                     <select name="status" class="form-select" onchange="this.form.submit()">
-                        <option value="all" {{ status == 'all' ? 'selected' }}>Wszystkie</option>
-                        <option value="published" {{ status == 'published' ? 'selected' }}>Opublikowane</option>
-                        <option value="draft" {{ status == 'draft' ? 'selected' }}>Szkice</option>
+                        <option value="{ 'templates.post.my.html.twig.value.all'|trans }" {{ status == 'all' ? 'selected' }}>{{ 'wszystkie'|trans }}</option>
+                        <option value="{ 'templates.post.my.html.twig.value.published'|trans }" {{ status == 'published' ? 'selected' }}>{{ 'opublikowane'|trans }}</option>
+                        <option value="{ 'templates.post.my.html.twig.value.draft'|trans }" {{ status == 'draft' ? 'selected' }}>{{ 'szkice'|trans }}</option>
                     </select>
                 </div>
-                {# jeśli masz inne filtry (kategoria itd.), dodaj tu #}
             </div>
         </form>
 
         <table class="table table-striped align-middle">
             <thead>
             <tr>
-                <th>Tytuł</th>
-                <th>Kategoria</th>
-                <th>Data</th>
-                <th>Status</th>
-                <th class="text-end">Akcje</th>
+                <th>{{ 'label.title'|trans }}</th>
+                <th>{{ 'label.category'|trans }}</th>
+                <th>{{ 'data'|trans }}</th>
+                <th>{{ 'label.status'|trans }}</th>
+                <th class="text-end">{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -41,12 +40,12 @@
                     <td>{{ post.postDate ? post.postDate|date('Y-m-d H:i') : '-' }}</td>
                     <td><span class="badge bg-{{ badge }}">{{ post.status }}</span></td>
                     <td class="text-end">
-                        <a class="btn btn-sm btn-outline-primary" href="{{ path('post_show', {id: post.id}) }}">Podgląd</a>
-                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('post_edit', {id: post.id}) }}">Edytuj</a>
+                        <a class="btn btn-sm btn-outline-primary" href="{{ path('post_show', {id: post.id}) }}">{{ 'action.show'|trans }}</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('post_edit', {id: post.id}) }}">{{ 'Edit'|trans }}</a>
                     </td>
                 </tr>
             {% else %}
-                <tr><td colspan="5" class="text-center text-muted">Brak postów</td></tr>
+                <tr><td colspan="5" class="text-center text-muted">{{ 'no_posts'|trans }}</td></tr>
             {% endfor %}
             </tbody>
         </table>

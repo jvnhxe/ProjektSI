@@ -83,8 +83,8 @@
 
 
                 <div class="mt-4">
-                    <a href="{{ path('post_edit', {id: post.id}) }}" class="btn btn-primary">Edit</a>
-                    <a href="{{ path('post_index') }}" class="btn btn-secondary">Back to Posts</a>
+                    <a href="{{ path('post_index') }}" class="btn btn-secondary">{{ 'backtolist'|trans }}</a>
+                    <a href="{{ path('post_edit', {id: post.id}) }}" class="btn btn-primary">{{ 'title.post_edit'|trans }}</a>
                 </div>
             </div>
         </div>

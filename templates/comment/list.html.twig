@@ -3,7 +3,7 @@
 {% block body %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
-<h2>Comments</h2>
+<h2>{{ 'templates.comment.list.html.twig.comments'|trans }}</h2>
 {% if comments is not empty %}
     <ul>
         {% for comment in comments %}
@@ -11,16 +11,16 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No comments yet. Be the first to comment!</p>
+    <p>{{ 'templates.comment.list.html.twig.no_comments_yet_be_the_first_to_comment'|trans }}</p>
 {% endif %}
-<h2>Add a Comment</h2>
+<h2>{{ 'templates.comment.list.html.twig.add_a_comment'|trans }}</h2>
 <form action="{{ path('comment_create', { 'id': post.id }) }}" method="post">
     <div class="form-group">
-        <label for="content">Content:</label>
+        <label for="content">{{ 'templates.comment.list.html.twig.content'|trans }}</label>
         <textarea id="content" name="content" class="form-control" required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Add Comment</button>
+    <button type="submit" class="btn btn-primary">{{ 'templates.comment.list.html.twig.add_comment'|trans }}</button>
 </form>
 <p>
-    <a href="{{ path('post_index') }}" title="Back to list">Back to list</a>
+    <a href="{{ path('post_index') }}" title="{ 'templates.comment.list.html.twig.back_to_list'|trans }">{{ 'templates.comment.list.html.twig.back_to_list'|trans }}</a>
 </p>

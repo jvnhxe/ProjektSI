@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Comment List</h1>
+    <h1>{{ 'templates.comment.index.html.twig.comment_list'|trans }}</h1>
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ path('comment_create')}}" class="btn btn-primary">Add new</a>
+            <a href="{{ path('comment_create')}}" class="btn btn-primary">{{ 'templates.comment.index.html.twig.add_new'|trans }}</a>
         </div>
     </div>
     {% if pagination is defined and pagination.items|length %}
@@ -19,7 +19,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Email', 'comment.email') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Nick', 'comment.nick') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Content', 'comment.content') }}</th>
-                <th>Actions</th>
+                <th>{{ 'templates.comment.index.html.twig.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -31,8 +31,8 @@
                     <td>{{ comment.content }}</td>
                     <td>
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('comment_edit', {id: comment.id}) }}" title="Edit" class="btn btn-warning">Edit</a>
-                            <a href="{{ path('comment_delete', {id: comment.id}) }}" title="Delete" class="btn btn-danger">Delete</a>
+                            <a href="{{ path('comment_edit', {id: comment.id}) }}" title="{ 'templates.comment.index.html.twig.edit'|trans }" class="btn btn-warning">{{ 'templates.comment.index.html.twig.edit'|trans }}</a>
+                            <a href="{{ path('comment_delete', {id: comment.id}) }}" title="{ 'templates.comment.index.html.twig.delete'|trans }" class="btn btn-danger">{{ 'templates.comment.index.html.twig.delete'|trans }}</a>
                         {% endif %}
                     </td>
                 </tr>

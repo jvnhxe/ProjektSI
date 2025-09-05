@@ -48,7 +48,7 @@ class PostType extends AbstractType
             'content',
             TextareaType::class, // Changed from TextType to TextareaType for better content editing
             [
-                'label' => 'Content',
+                'label' => 'label.content',
                 'required' => true,
                 'attr' => [
                     'max_length' => 1000,
@@ -62,7 +62,7 @@ class PostType extends AbstractType
             [
                 'class' => Category::class,
                 'choice_label' => fn ($category): string => $category->getTitle(),
-                'label' => 'Category',
+                'label' => 'label.category',
                 'placeholder' => 'label.none',
                 'required' => true,
             ]
@@ -71,7 +71,7 @@ class PostType extends AbstractType
             'postDate',
             DateTimeType::class,
             [
-                'label' => 'Post Date', // Zmieniona etykieta na "Post Date"
+                'label' => 'data', // Zmieniona etykieta na "Post Date"
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker'],
@@ -82,7 +82,7 @@ class PostType extends AbstractType
             'imageFile',
             VichImageType::class,
             [
-                'label' => 'Post Image',
+                'label' => 'image',
                 'required' => false, // Image is optional
                 'allow_delete' => true, // Allow users to delete the image
                 'delete_label' => 'Remove current image',
@@ -93,7 +93,7 @@ class PostType extends AbstractType
                     'accept' => 'image/*', // Only accept image files
                     'class' => 'form-control',
                 ],
-                'help' => 'Upload an image for your post (JPG, PNG, GIF formats supported)',
+                'help'  => 'form.post.image_help',
             ]
         );
 
@@ -101,7 +101,7 @@ class PostType extends AbstractType
             'status',
             ChoiceType::class,
             [
-                'label' => 'Status',
+                'label' => 'label.status',
                 'choices' => [
                     'Szkic' => 'draft',
                     'Opublikowany' => 'published',
