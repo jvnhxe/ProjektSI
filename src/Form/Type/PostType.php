@@ -51,10 +51,7 @@ class PostType extends AbstractType
             [
                 'label' => 'label.content',
                 'required' => true,
-                'attr' => [
-                    'max_length' => 1000,
-                    'rows' => 8, // Added rows for better textarea display
-                ],
+                'attr' => ['rows' => 12, 'placeholder' => 'Piszesz w Markdown (np. **pogrubienie**, _kursywa_, `kod`)'],
             ]
         );
         $builder->add(

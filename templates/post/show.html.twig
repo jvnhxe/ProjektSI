@@ -23,7 +23,9 @@
                 </div>
 
                 <div class="content">
-                    {{ post.content|nl2br }}
+                    <article class="markdown">
+                        {{ post.content|markdown }}
+                    </article>
                 </div>
 
                 <h1>{{ 'title.comment_list'|trans }}</h1>
