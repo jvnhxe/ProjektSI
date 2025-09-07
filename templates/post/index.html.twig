@@ -34,15 +34,15 @@
             {% for post in pagination.items %}
                 <tr>
                     <td>{{ post.id }}</td>
-                    <td>{{ post.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ post.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ post.createdAt|format_date('long') }}</td>
+                    <td>{{ post.updatedAt|format_date('long') }}</td>
                     <td>{{ post.title }}</td>
                     <td>
                         <a class="btn btn-outline-primary" href="{{ path('post_index', {'categoryId' : post.category.id}) }}" title="{{ post.category.title }}">
                             {{ post.category.title }}
                         </a>
                     </td>
-                    <td>{{ post.postDate|date('Y/m/d H:i') }}</td>
+                    <td>{{ post.postDate|format_date('long') }}</td>
                     <td>
                         {% set badge = post.status == 'published' ? 'success' : 'secondary' %}
                         <span class="badge bg-{{ badge }}">{{ post.status }}</span>

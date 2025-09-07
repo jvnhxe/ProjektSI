@@ -37,7 +37,7 @@
                 <tr>
                     <td>{{ post.title }}</td>
                     <td>{{ post.category.title ?? '-' }}</td>
-                    <td>{{ post.postDate ? post.postDate|date('Y-m-d H:i') : '-' }}</td>
+                    <td>{{ post.postDate ? post.postDate|format_date('long') : '-' }}</td>
                     <td><span class="badge bg-{{ badge }}">{{ post.status }}</span></td>
                     <td class="text-end">
                         <a class="btn btn-sm btn-outline-primary" href="{{ path('post_show', {id: post.id}) }}">{{ 'action.show'|trans }}</a>

@@ -42,7 +42,7 @@
                                             {{ post.content|slice(0, 150) }}...
                                         </p>
                                         <small class="text-muted">
-                                            {{ post.createdAt|date('M j, Y') }}
+                                            {{ post.createdAt|format_date('long') }}
                                         </small>
                                     </div>
                                 </div>

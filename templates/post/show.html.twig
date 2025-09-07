@@ -19,7 +19,7 @@
 
 
                 <div class="mb-3">
-                    <small class="text-muted">Published on {{ post.createdAt|date('F j, Y') }}</small>
+                    <small class="text-muted">Published on {{ post.createdAt|format_date('long') }}</small>
                 </div>
 
                 <div class="content">
