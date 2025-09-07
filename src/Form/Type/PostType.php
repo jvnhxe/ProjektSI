@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Class PostType.
@@ -94,6 +95,18 @@ class PostType extends AbstractType
                     'class' => 'form-control',
                 ],
                 'help'  => 'form.post.image_help',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Dozwolone są tylko pliki JPG, PNG i GIF.',
+                    ]),
+                ],
+
             ]
         );
 
