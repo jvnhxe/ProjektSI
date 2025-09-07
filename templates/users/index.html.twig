@@ -14,7 +14,7 @@
                 <th>{{ 'ID'|trans }}</th>
                 <th>{{ 'Email'|trans }}</th>
                 <th>{{ 'Role'|trans }}</th>
-                {#                <th>{{ 'Password'|trans }}</th>#}
+                <th>{{ 'Status'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -24,11 +24,29 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.roles|join(', ') }}</td>
-                    {#                    <td>{{ user.password }}</td>#}
+                    <td>
+                        {% if user.isBlocked %}
+                            <span class="badge bg-danger">{{ 'blocked'|trans }}</span>
+                        {% else %}
+                            <span class="badge bg-success">{{ 'active'|trans }}</span>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="{{ url('user_show', {id: user.id}) }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
                         <a href="{{ url('user_edit', {id: user.id}) }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
-                        {#                        <a href="{{ url('user_delete', {id: user.id}) }}" class="btn btn-danger">{{ 'Delete'|trans }}</a>#}
+                        {% if user.isBlocked %}
+                            <form method="post" action="{{ path('user_unblock', {id: user.id}) }}" class="d-inline"
+                                  onsubmit="return confirm('{{ 'Na pewno odblokować?'|trans }}');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('unblock_user_' ~ user.id) }}">
+                                <button class="btn btn-outline-success">{{ 'Odblokuj'|trans }}</button>
+                            </form>
+                        {% else %}
+                            <form method="post" action="{{ path('user_block', {id: user.id}) }}" class="d-inline"
+                                  onsubmit="return confirm('{{ 'Na pewno zablokować?'|trans }}');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('block_user_' ~ user.id) }}">
+                                <button class="btn btn-outline-danger">{{ 'Zablokuj'|trans }}</button>
+                            </form>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

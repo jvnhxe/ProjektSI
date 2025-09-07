@@ -251,4 +251,38 @@ class UserController extends AbstractController
             ]
         );
     }
+
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/block', name: 'user_block', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function block(
+        Request $request,
+        User $user,
+        UserServiceInterface $userService
+    ): Response {
+        if (!$this->isCsrfTokenValid('block_user_'.$user->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token');
+        }
+
+        $user->setIsBlocked(true);
+        $userService->save($user);
+        $this->addFlash('success', 'Użytkownik zablokowany.');
+        return $this->redirectToRoute('user_index');
+    }
+
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/unblock', name: 'user_unblock', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function unblock(
+        Request $request,
+        User $user,
+        UserServiceInterface $userService
+    ): Response {
+        if (!$this->isCsrfTokenValid('unblock_user_'.$user->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token');
+        }
+
+        $user->setIsBlocked(false);
+        $userService->save($user);
+        $this->addFlash('success', 'Użytkownik odblokowany.');
+        return $this->redirectToRoute('user_index');
+    }
 }
