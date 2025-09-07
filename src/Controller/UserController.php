@@ -170,7 +170,7 @@ class UserController extends AbstractController
      * @return Response HTTP response
      */
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/password', name: 'user_password', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('USER_EDIT', subject: 'user')]
     public function editPassword(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(
@@ -197,7 +197,8 @@ class UserController extends AbstractController
                 $this->translator->trans('message.updated_successfully')
             );
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('main_index');
+
         }
 
         return $this->render(

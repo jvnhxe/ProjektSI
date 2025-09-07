@@ -6,6 +6,10 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h1>{{ 'myposts'|trans }}</h1>
+            <a href="{{ path('user_password', {id: app.user.id}) }}" class="btn btn-secondary me-2">
+                {{ 'action.change_password'|trans }}
+            </a>
+
             <a href="{{ path('post_create') }}" class="btn btn-primary">{{ 'action.create_post'|trans }}</a>
         </div>
 
