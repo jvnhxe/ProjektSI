@@ -68,6 +68,8 @@ class PostService implements PostServiceInterface
      * @param User                    $author  Owner of posts
      * @param PostListInputFiltersDto $filters Filters from request
      * @param string|null             $status  'draft'|'published' or null for all
+     *
+     * @return \Knp\Component\Pager\Pagination\PaginationInterface Paginated list of posts
      */
     public function getPaginatedListForAuthor(int $page, User $author, PostListInputFiltersDto $filters, ?string $status = null): PaginationInterface
     {

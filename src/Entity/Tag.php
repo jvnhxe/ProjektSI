@@ -1,16 +1,28 @@
 <?php
+/*
+ * This file is part of the YourProject package.
+ *
+ * (c) Your Name <your-email@example.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use App\Repository\TagRepository;
-
 
 #[ORM\Table(name: 'tags')]
 #[ORM\Entity(repositoryClass: TagRepository::class)]
+/**
+ * Tag entity used to label posts.
+ */
 class Tag
 {
     #[ORM\Id]
@@ -26,17 +38,65 @@ class Tag
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tags')]
     private Collection $posts;
 
+    /**
+     * Initializes the posts collection.
+     */
     public function __construct()
     {
         $this->posts = new ArrayCollection();
     }
 
-    public function __toString(): string { return (string) $this->name; }
+    /**
+     * Returns the tag's display name.
+     *
+     * @return string Tag name.
+     */
+    public function __toString(): string
+    {
+        return (string) $this->name;
+    }
 
-    public function getId(): ?int { return $this->id; }
-    public function getName(): string { return $this->name; }
-    public function setName(string $name): self { $this->name = $name; return $this; }
+    /**
+     * Gets the tag identifier.
+     *
+     * @return int|null Tag ID.
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    /** @return Collection<int, Post> */
-    public function getPosts(): Collection { return $this->posts; }
+    /**
+     * Gets the tag name.
+     *
+     * @return string Tag name.
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the tag name.
+     *
+     * @param string $name Tag name.
+     *
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets posts associated with this tag.
+     *
+     * @return Collection<int, Post> Collection of posts.
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
 }

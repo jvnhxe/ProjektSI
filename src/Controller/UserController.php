@@ -252,13 +252,21 @@ class UserController extends AbstractController
         );
     }
 
+    /**
+     * Blokuje konto użytkownika (tylko dla administratora).
+     *
+     * Weryfikuje token CSRF, ustawia flagę blokady i zapisuje zmiany.
+     *
+     * @param Request              $request     Bieżące żądanie HTTP (z tokenem CSRF).
+     * @param User                 $user        Użytkownik, którego dotyczy akcja (parametr {id}).
+     * @param UserServiceInterface $userService Serwis zapisujący zmiany użytkownika.
+     *
+     * @return Response Przekierowanie do listy użytkowników po powodzeniu.
+     */
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/block', name: 'user_block', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function block(
-        Request $request,
-        User $user,
-        UserServiceInterface $userService
-    ): Response {
+    public function block(Request $request, User $user, UserServiceInterface $userService): Response
+    {
         if (!$this->isCsrfTokenValid('block_user_'.$user->getId(), $request->request->get('_token'))) {
             throw $this->createAccessDeniedException('Invalid CSRF token');
         }
@@ -269,13 +277,21 @@ class UserController extends AbstractController
         return $this->redirectToRoute('user_index');
     }
 
+    /**
+     * Odblokowuje konto użytkownika (tylko dla administratora).
+     *
+     * Weryfikuje token CSRF, zdejmuje flagę blokady i zapisuje zmiany.
+     *
+     * @param Request              $request     Bieżące żądanie HTTP (z tokenem CSRF).
+     * @param User                 $user        Użytkownik, którego dotyczy akcja (parametr {id}).
+     * @param UserServiceInterface $userService Serwis zapisujący zmiany użytkownika.
+     *
+     * @return Response Przekierowanie do listy użytkowników po powodzeniu.
+     */
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/unblock', name: 'user_unblock', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
-    public function unblock(
-        Request $request,
-        User $user,
-        UserServiceInterface $userService
-    ): Response {
+    public function unblock(Request $request, User $user, UserServiceInterface $userService): Response
+    {
         if (!$this->isCsrfTokenValid('unblock_user_'.$user->getId(), $request->request->get('_token'))) {
             throw $this->createAccessDeniedException('Invalid CSRF token');
         }

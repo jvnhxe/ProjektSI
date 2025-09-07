@@ -66,13 +66,6 @@ class PostRepository extends ServiceEntityRepository
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
-    public function withTag(QueryBuilder $qb, Tag $tag): QueryBuilder
-    {
-        return $qb
-            ->leftJoin('post.tags', 't')
-            ->andWhere('t = :tag')
-            ->setParameter('tag', $tag);
-    }
 
     /**
      * Query posts for given author. Optionally filter by status ('draft'/'published').

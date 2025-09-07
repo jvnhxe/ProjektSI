@@ -1,4 +1,15 @@
 <?php
+/*
+ * This file is part of the YourProject package.
+ *
+ * (c) Your Name <your-email@example.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace App\Form\Type;
 
 use App\Entity\Tag;
@@ -8,8 +19,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Form type for managing {@see Tag} entities.
+ */
 class TagType extends AbstractType
 {
+    /**
+     * Builds the form for a Tag.
+     *
+     * @param FormBuilderInterface     $builder Form builder.
+     * @param array<string, mixed>     $options Form options.
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class, [
@@ -21,8 +41,15 @@ class TagType extends AbstractType
         ]);
     }
 
+    /**
+     * Configures the options for this form type.
+     *
+     * @param OptionsResolver $resolver Options resolver.
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Tag::class]);
+        $resolver->setDefaults([
+            'data_class' => Tag::class,
+        ]);
     }
 }

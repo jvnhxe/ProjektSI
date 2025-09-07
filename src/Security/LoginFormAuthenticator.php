@@ -130,17 +130,22 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     }
 
     /**
-     * Get login URL.
+     * Handles user registration.
      *
-     * @param Request $request HTTP request
+     * Displays and processes the registration form. When the form is submitted and valid,
+     * the user entity is persisted via {@see UserServiceInterface}. A success flash message
+     * is added and the user is redirected to the login page.
      *
-     * @return string Login URL
+     * On initial GET (or when validation fails), the registration form is rendered.
+     *
+     * @param Request               $request     Current HTTP request carrying form data.
+     * @param UserServiceInterface  $userService Application service used to persist the user.
+     *
+     * @return Response Renders the registration form or redirects to the login route on success.
+     *
+     * @see app_login
+     * @see registration/register.html.twig
      */
-    protected function getLoginUrl(Request $request): string
-    {
-        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
-    }
-
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserServiceInterface $userService): Response
     {
@@ -159,6 +164,18 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Get login URL.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return string Login URL
+     */
+    protected function getLoginUrl(Request $request): string
+    {
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 
 }

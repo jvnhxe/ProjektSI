@@ -105,13 +105,22 @@ class PostController extends AbstractController
         ]);
     }
 
+    /**
+     * Displays posts filtered by a specific tag.
+     *
+     * Builds the list query with {@see PostRepository::queryAll()} using a {@see PostListFiltersDto}
+     * that contains the selected Tag, paginates the results, and renders the standard index view.
+     *
+     * @param Tag                 $tag             Tag resolved from {id}.
+     * @param Request             $request         Current HTTP request (reads ?page).
+     * @param PostRepository      $postRepository  Repository used to build the query.
+     * @param PaginatorInterface  $paginator       KNP paginator.
+     *
+     * @return Response Rendered posts index filtered by the given tag.
+     */
     #[Route('/posts/tag/{id}', name: 'post_index_by_tag', methods: ['GET'])]
-    public function indexByTag(
-        Tag $tag,
-        Request $request,
-        PostRepository $postRepository,
-        PaginatorInterface $paginator
-    ): Response {
+    public function indexByTag(Tag $tag, Request $request, PostRepository $postRepository, PaginatorInterface $paginator): Response
+    {
         $filters = new PostListFiltersDto(category: null, tag: $tag);
         $qb = $postRepository->queryAll($filters);          // to samo, co w index
 
@@ -216,8 +225,10 @@ class PostController extends AbstractController
     /**
      * Wyświetla listę postów zalogowanego użytkownika (zakładka "Mój profil").
      *
-     * @param PostListInputFiltersDto $filters Filtrowanie mapowane z query stringa
-     * @param Request                 $request Bieżące żądanie HTTP
+     * @param PostListInputFiltersDto $filters Filtrowanie mapowane z query stringa.
+     * @param Request                 $request Bieżące żądanie HTTP.
+     *
+     * @return Response Render widoku z paginacją postów autora.
      */
     #[Route('/me/posts', name: 'post_my', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]

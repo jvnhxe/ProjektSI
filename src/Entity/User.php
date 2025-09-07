@@ -156,16 +156,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
+    /**
+     * Checks whether the user account is blocked.
+     *
+     * @return bool True if the account is blocked, false otherwise.
+     */
     public function isBlocked(): bool
     {
         return $this->isBlocked;
     }
 
+    /**
+     * Sets the blocked flag for the user account.
+     *
+     * @param bool $blocked Whether the account should be marked as blocked.
+     *
+     * @return self
+     */
     public function setIsBlocked(bool $blocked): self
     {
         $this->isBlocked = $blocked;
         return $this;
     }
+
 
     /**
      * Removes sensitive information from the token.

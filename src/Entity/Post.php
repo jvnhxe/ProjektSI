@@ -341,17 +341,34 @@ class Post
     /** @return Collection<int, Tag> */
     public function getTags(): Collection { return $this->tags; }
 
+    /**
+     * Adds a tag to the post if it is not already assigned.
+     *
+     * @param Tag $tag Tag to add.
+     *
+     * @return self Fluent interface.
+     */
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
         }
+
         return $this;
     }
 
+    /**
+     * Removes a tag from the post if it is currently assigned.
+     *
+     * @param Tag $tag Tag to remove.
+     *
+     * @return self Fluent interface.
+     */
     public function removeTag(Tag $tag): self
     {
         $this->tags->removeElement($tag);
+
         return $this;
     }
+
 }
