@@ -23,11 +23,6 @@ class Comment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 64)]
-    #[ORM\Column(length: 64)]
-    private ?string $nick = null;
-
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
@@ -55,26 +50,6 @@ class Comment
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return string|null Null
-     */
-    public function getNick(): ?string
-    {
-        return $this->nick;
-    }
-
-    /**
-     * @param string $nick Nick
-     *
-     * @return $this Entity
-     */
-    public function setNick(string $nick): static
-    {
-        $this->nick = $nick;
-
-        return $this;
     }
 
     /**

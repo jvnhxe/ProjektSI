@@ -39,7 +39,7 @@ class CommentRepository extends ServiceEntityRepository
     public function queryAllByPost(Post $post): QueryBuilder
     {
         return $this->createQueryBuilder('comment')
-            ->select('partial comment.{id, nick, email, content}')
+            ->select('partial comment.{id, email, content}')
             ->andWhere('comment.post = :post')
             ->setParameter('post', $post)
             ->orderBy('comment.id', 'DESC');

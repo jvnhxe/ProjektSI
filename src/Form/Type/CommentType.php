@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CategoryType.
@@ -29,33 +30,17 @@ class CommentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'nick',
-            TextType::class,
-            [
-                'label' => 'label.nick',
-                'required' => true,
-                'attr' => ['max_length' => 64],
-            ]
-        );
-        $builder->add(
-            'email',
-            TextType::class,
-            [
-                'label' => 'Email',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
-        $builder->add(
-            'content',
-            TextType::class,
-            [
-                'label' => 'label.content',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
+        $builder->add('content', TextType::class, [
+            'label' => 'Treść (Markdown)',
+            'attr' => [
+                'rows' => 8,
+                'placeholder' => 'Twoja odpowiedź w Markdown (np. **pogrubienie**, _kursywa_, `kod`)'
+            ],
+            'constraints' => [
+                new Assert\NotBlank(message: 'Treść nie może być pusta')
+            ],
+        ]);
+        // Uwaga: NIE dodajemy tu email/nick.
     }
 
     /**
