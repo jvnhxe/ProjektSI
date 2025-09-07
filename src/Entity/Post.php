@@ -11,6 +11,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Class Post.
@@ -103,11 +105,20 @@ class Post
     private string $status = 'draft';
 
     /**
+     * Tags
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    #[ORM\JoinTable(name: 'posts_tags')]
+    #[Assert\Count(max: 3, maxMessage: 'Możesz wybrać maksymalnie 3 tagi.')]
+    private Collection $tags;
+
+    /**
      * Post constructor: sets default values.
      */
     public function __construct()
     {
         $this->postDate = new \DateTimeImmutable();
+        $this->tags = new ArrayCollection();
         //  $this->comments = new ArrayCollection();
     }
 
@@ -325,5 +336,22 @@ class Post
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /** @return Collection<int, Tag> */
+    public function getTags(): Collection { return $this->tags; }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        $this->tags->removeElement($tag);
+        return $this;
     }
 }

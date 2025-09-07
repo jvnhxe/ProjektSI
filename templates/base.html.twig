@@ -22,6 +22,12 @@
                     <a class="nav-item nav-link" href="{{ url('category_index') }}">{{ 'categories'|trans }}</a>
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="nav-item nav-link" href="{{ url('user_index') }}">{{ 'users'|trans }}</a>
+
+                        {# nowa zakładka: Tagi #}
+                        {% set isTagsActive = app.request.attributes.get('_route') starts with 'tag_' %}
+                        <a class="nav-item nav-link {{ isTagsActive ? 'active' }}" href="{{ url('tag_index') }}">
+                            {{ 'tags'|trans }}
+                        </a>
                     {% endif %}
                     <div class="search-panel">
                         <form method="GET" action="{{ path('post_search') }}" class="d-flex">

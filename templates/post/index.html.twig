@@ -16,6 +16,14 @@
             <a href="{{ path('post_create') }}" class="btn btn-primary">{{ 'action.create_post'|trans }}</a>
         </div>
     </div>
+{% if currentTag is defined and currentTag %}
+    <div class="alert alert-info d-flex align-items-center justify-content-between">
+        <div>
+            Filtr: tag <strong>{{ currentTag.name }}</strong>
+        </div>
+        <a class="btn btn-sm btn-outline-dark" href="{{ path('post_index') }}">Wyczyść filtr</a>
+    </div>
+{% endif %}
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
@@ -27,6 +35,7 @@
                 <th>{{ 'label.category'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'post.postDate') }}</th>
                 <th>{{ 'label.status'|trans }}</th>
+                <th>{{ 'label.tags'|trans }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -46,6 +55,17 @@
                     <td>
                         {% set badge = post.status == 'published' ? 'success' : 'secondary' %}
                         <span class="badge bg-{{ badge }}">{{ post.status }}</span>
+                    </td>
+                    <td>
+                        {% if post.tags|length %}
+                            {% for tag in post.tags %}
+                                <a class="badge bg-info text-dark me-1"
+                                   href="{{ path('post_index_by_tag', { id: tag.id }) }}">
+                                    {{ tag.name }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+
                     </td>
                     <td>
                         <a href="{{ path('post_show', {id: post.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>

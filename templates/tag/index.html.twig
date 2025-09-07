@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Tagi</h1>
+        <a href="{{ path('tag_new') }}" class="btn btn-primary">Nowy tag</a>
+    </div>
+    <table class="table table-striped">
+        <thead><tr><th>ID</th><th>Nazwa</th><th class="text-end">Akcje</th></tr></thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
+                <td class="text-end">
+                    <a href="{{ path('tag_edit', {id: tag.id}) }}" class="btn btn-sm btn-outline-secondary">Edytuj</a>
+                    <form method="post" action="{{ path('tag_delete', {id: tag.id}) }}" class="d-inline"
+                          onsubmit="return confirm('Na pewno usunąć?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete_tag_' ~ tag.id) }}">
+                        <button class="btn btn-sm btn-outline-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="3" class="text-center text-muted">Brak tagów</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -17,6 +17,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\File;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * Class PostType.
@@ -119,6 +122,20 @@ class PostType extends AbstractType
                 'required' => true,
             ]
         );
+
+        $builder->add('tags', EntityType::class, [
+        'class'        => Tag::class,
+        'choice_label' => 'name',
+        'multiple'     => true,
+        'expanded'     => true,     // checkboxy (wygodne do limitu 3)
+        'by_reference' => false,    // ważne przy ManyToMany
+        'required'     => false,
+        'query_builder' => fn(TagRepository $tr) => $tr->createQueryBuilder('t')->orderBy('t.name', 'ASC'),
+        'constraints'  => [
+            new Count(max: 3, maxMessage: 'Możesz wybrać maksymalnie 3 tagi.')
+        ],
+        'help' => 'Wybierz do 3 tagów.',
+    ]);
     }
 
     /**

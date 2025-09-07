@@ -5,8 +5,10 @@
 
 namespace App\Controller;
 
+use App\Dto\PostListFiltersDto;
 use App\Dto\PostListInputFiltersDto;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Entity\User;
 use App\Form\Type\PostType;
 use App\Repository\CommentRepository;
@@ -100,6 +102,28 @@ class PostController extends AbstractController
         return $this->render('post/show.html.twig', [
             'post' => $post,
             'commentPagination' => $commentPagination,
+        ]);
+    }
+
+    #[Route('/posts/tag/{id}', name: 'post_index_by_tag', methods: ['GET'])]
+    public function indexByTag(
+        Tag $tag,
+        Request $request,
+        PostRepository $postRepository,
+        PaginatorInterface $paginator
+    ): Response {
+        $filters = new PostListFiltersDto(category: null, tag: $tag);
+        $qb = $postRepository->queryAll($filters);          // to samo, co w index
+
+        $pagination = $paginator->paginate(
+            $qb,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('post/index.html.twig', [
+            'pagination' => $pagination,
+            'currentTag' => $tag,    // do wyświetlenia paska „aktywny filtr”
         ]);
     }
 

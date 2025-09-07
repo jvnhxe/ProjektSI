@@ -18,6 +18,7 @@ use Doctrine\ORM\ORMException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Tag;
 
 /**
  * Class PostRepository.
@@ -63,6 +64,14 @@ class PostRepository extends ServiceEntityRepository
         $queryBuilder->andWhere('post.status = :status')->setParameter(':status', 'published');
 
         return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    public function withTag(QueryBuilder $qb, Tag $tag): QueryBuilder
+    {
+        return $qb
+            ->leftJoin('post.tags', 't')
+            ->andWhere('t = :tag')
+            ->setParameter('tag', $tag);
     }
 
     /**
@@ -256,6 +265,13 @@ class PostRepository extends ServiceEntityRepository
         if ($filters->category instanceof Category) {
             $queryBuilder->andWhere('category = :category')
                 ->setParameter('category', $filters->category);
+        }
+
+        if ($filters->tag instanceof Tag) {
+            $queryBuilder
+                ->join('post.tags', 't')
+                ->andWhere('t = :tag')
+                ->setParameter('tag', $filters->tag);
         }
 
         return $queryBuilder;

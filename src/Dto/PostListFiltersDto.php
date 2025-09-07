@@ -11,6 +11,7 @@
 namespace App\Dto;
 
 use App\Entity\Category;
+use App\Entity\Tag;
 
 /**
  * Class PostListFiltersDto.
@@ -22,11 +23,12 @@ class PostListFiltersDto
     /**
      * PostListFiltersDto constructor.
      *
-     * @param Category|null           $category Category filter
+     * @param Category|null $category Category filter
+     * @param Tag|null $tag
      * @param \DateTimeInterface|null $dateFrom Date filter from
-     * @param \DateTimeInterface|null $dateTo   Date filter to
+     * @param \DateTimeInterface|null $dateTo Date filter to
      */
-    public function __construct(public ?Category $category = null, private readonly ?\DateTimeInterface $dateFrom = null, private readonly ?\DateTimeInterface $dateTo = null)
+    public function __construct(public ?Category $category = null, public ?Tag $tag = null, private readonly ?\DateTimeInterface $dateFrom = null, private readonly ?\DateTimeInterface $dateTo = null)
     {
     }
 
@@ -39,6 +41,8 @@ class PostListFiltersDto
     {
         return $this->category;
     }
+
+    public function getTag(): ?Tag { return $this->tag; }
 
     /**
      * Get the date filter from.
