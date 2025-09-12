@@ -14,6 +14,18 @@
                 <source>label.id</source>
                 <target>Id</target>
             </trans-unit>
+            <trans-unit id="newtag">
+                <source>newtag</source>
+                <target>Nowy Tag</target>
+            </trans-unit>
+            <trans-unit id="notag">
+                <source>notag</source>
+                <target>Brak Tagów</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Tagi</target>
+            </trans-unit>
             <trans-unit id="ID">
                 <source>ID</source>
                 <target state="translated">ID</target>
@@ -339,6 +351,34 @@
                 <source>Opublikowany</source>
                 <target>Opublikowany</target>
             </trans-unit>
+            <trans-unit id="opublikowane">
+                <source>opublikowane</source>
+                <target>opublikowane</target>
+            </trans-unit>
+            <trans-unit id="Error">
+                <source>Error</source>
+                <target>Error</target>
+            </trans-unit>
+            <trans-unit id="Możesz wybrać maksymalnie 3 tagi.">
+                <source>Możesz wybrać maksymalnie 3 tagi.</source>
+                <target>Możesz wybrać maksymalnie 3 tagi.</target>
+            </trans-unit>
+
+            <trans-unit id="Odblokuj użytkownika"><source>Odblokuj użytkownika</source><target>Odblokuj użytkownika</target></trans-unit>
+            <trans-unit id="Odblokować użytkownika"><source>Odblokować użytkownika</source><target>Odblokować użytkownika</target></trans-unit>
+            <trans-unit id="Czy na pewno chcesz odblokować to konto?"><source>Czy na pewno chcesz odblokować to konto?</source><target>Czy na pewno chcesz odblokować to konto?</target></trans-unit>
+            <trans-unit id="Odblokuj"><source>Odblokuj</source><target>Odblokuj</target></trans-unit>
+            <trans-unit id="Anuluj"><source>Anuluj</source><target>Anuluj</target></trans-unit>
+
+            <trans-unit id="Zablokuj użytkownika"><source>Zablokuj użytkownika</source><target>Zablokuj użytkownika</target></trans-unit>
+            <trans-unit id="Zablokować użytkownika"><source>Zablokować użytkownika</source><target>Zablokować użytkownika</target></trans-unit>
+            <trans-unit id="Czy na pewno chcesz zablokować to konto?"><source>Czy na pewno chcesz zablokować to konto?</source><target>Czy na pewno chcesz zablokować to konto?</target></trans-unit>
+            <trans-unit id="Zablokuj"><source>Zablokuj</source><target>Zablokuj</target></trans-unit>
+
+
+            <trans-unit id="Status"><source>Status</source><target>Status</target></trans-unit>
+            <trans-unit id="blocked"><source>blocked</source><target>zablokowany</target></trans-unit>
+            <trans-unit id="active"><source>active</source><target>aktywny</target></trans-unit>
 
         </body>
     </file>

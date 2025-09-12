@@ -44,7 +44,7 @@ class RegistrationType extends AbstractType
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type'            => PasswordType::class,
-                'mapped'          => false, // hasło w encji ustawiamy ręcznie po zhashowaniu
+                'mapped'          => false,
                 'first_options'   => ['label' => 'Hasło'],
                 'second_options'  => ['label' => 'Powtórz hasło'],
                 'invalid_message' => 'Hasła muszą być identyczne.',

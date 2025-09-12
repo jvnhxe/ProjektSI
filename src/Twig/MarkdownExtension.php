@@ -32,7 +32,6 @@ class MarkdownExtension extends AbstractExtension
      */
     public function getFilters(): array
     {
-        // is_safe: ['html'] – inform Twig the filter output is already safe HTML
         return [
             new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
         ];

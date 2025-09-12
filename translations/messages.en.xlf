@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
+    <file source-language="en" datatype="plaintext" target-language="en" original="file.ext">
         <body>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
@@ -9,6 +9,18 @@
             <trans-unit id="label.id">
                 <source>label.id</source>
                 <target>Id</target>
+            </trans-unit>
+            <trans-unit id="newtag">
+                <source>newtag</source>
+                <target>New Tag</target>
+            </trans-unit>
+            <trans-unit id="notag">
+                <source>notag</source>
+                <target>No Tags</target>
+            </trans-unit>
+            <trans-unit id="tags">
+                <source>tags</source>
+                <target>Tags</target>
             </trans-unit>
             <trans-unit id="ID">
                 <source>ID</source>
@@ -299,7 +311,6 @@
                 <source>form.post.image_help</source>
                 <target>Upload an image for your post (JPG, PNG, GIF formats supported)</target>
             </trans-unit>
-
             <trans-unit id="users.details">
                 <source>users.details</source>
                 <target>Details of user</target>
@@ -340,6 +351,30 @@
                 <source>opublikowany</source>
                 <target>Published</target>
             </trans-unit>
+            <trans-unit id="Error">
+                <source>Error</source>
+                <target>Error</target>
+            </trans-unit>
+            <trans-unit id="Możesz wybrać maksymalnie 3 tagi.">
+                <source>Możesz wybrać maksymalnie 3 tagi.</source>
+                <target>You can choose at most 3 tags </target>
+            </trans-unit>
+
+            <trans-unit id="Odblokuj użytkownika"><source>Odblokuj użytkownika</source><target>Unblock user</target></trans-unit>
+            <trans-unit id="Odblokować użytkownika"><source>Odblokować użytkownika</source><target>Unblock user</target></trans-unit>
+            <trans-unit id="Czy na pewno chcesz odblokować to konto?"><source>Czy na pewno chcesz odblokować to konto?</source><target>Are you sure you want to unblock this account?</target></trans-unit>
+            <trans-unit id="Odblokuj"><source>Odblokuj</source><target>Unblock</target></trans-unit>
+            <trans-unit id="Anuluj"><source>Anuluj</source><target>Cancel</target></trans-unit>
+
+            <trans-unit id="Zablokuj użytkownika"><source>Zablokuj użytkownika</source><target>Block user</target></trans-unit>
+            <trans-unit id="Zablokować użytkownika"><source>Zablokować użytkownika</source><target>Block user</target></trans-unit>
+            <trans-unit id="Czy na pewno chcesz zablokować to konto?"><source>Czy na pewno chcesz zablokować to konto?</source><target>Are you sure you want to block this account?</target></trans-unit>
+            <trans-unit id="Zablokuj"><source>Zablokuj</source><target>Block</target></trans-unit>
+
+
+            <trans-unit id="Status"><source>Status</source><target>Status</target></trans-unit>
+            <trans-unit id="blocked"><source>blocked</source><target>blocked</target></trans-unit>
+            <trans-unit id="active"><source>active</source><target>active</target></trans-unit>
 
         </body>
     </file>

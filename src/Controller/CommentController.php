@@ -1,6 +1,11 @@
 <?php
-/**
- * Comment controller.
+/*
+ * This file is part of the YourProject package.
+ *
+ * (c) Your Name <your-email@example.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Controller;
@@ -49,7 +54,6 @@ class CommentController extends AbstractController
     #[\Symfony\Component\Routing\Attribute\Route('/{id}/create', name: 'comment_create', requirements: ['id' => '[1-9]\d*'], methods: 'GET|POST')]
     public function create(Request $request, Post $post): Response
     {
-        //        $user = $this->getUser();
         $comment = new Comment();
         $comment->setPost($post);
         $user = $this->getUser();

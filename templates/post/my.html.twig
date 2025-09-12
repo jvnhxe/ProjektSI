@@ -17,9 +17,9 @@
             <div class="row g-2">
                 <div class="col-auto">
                     <select name="status" class="form-select" onchange="this.form.submit()">
-                        <option value="{ 'templates.post.my.html.twig.value.all'|trans }" {{ status == 'all' ? 'selected' }}>{{ 'wszystkie'|trans }}</option>
-                        <option value="{ 'templates.post.my.html.twig.value.published'|trans }" {{ status == 'published' ? 'selected' }}>{{ 'opublikowane'|trans }}</option>
-                        <option value="{ 'templates.post.my.html.twig.value.draft'|trans }" {{ status == 'draft' ? 'selected' }}>{{ 'szkice'|trans }}</option>
+                        <option value="{ 'wszystkie'|trans }" {{ status == 'all' ? 'selected' }}>{{ 'wszystkie'|trans }}</option>
+                        <option value="{ 'opublikowane'|trans }" {{ status == 'published' ? 'selected' }}>{{ 'opublikowane'|trans }}</option>
+                        <option value="{ 'szkice'|trans }" {{ status == 'draft' ? 'selected' }}>{{ 'szkice'|trans }}</option>
                     </select>
                 </div>
             </div>

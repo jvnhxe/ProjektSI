@@ -59,15 +59,13 @@ class UserVoter extends Voter
         /** @var User|null $logged */
         $logged = $token->getUser();
         if (!$logged instanceof User) {
-            return false; // niezalogowany
+            return false;
         }
 
-        // admin?
         if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
-        // właściciel konta?
         return $subject === $logged;
     }
 }

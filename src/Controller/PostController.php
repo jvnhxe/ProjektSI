@@ -80,8 +80,6 @@ class PostController extends AbstractController
     #[Route('/post/{id}', name: 'post_show', methods: ['GET'])]
     public function show(Post $post, CommentRepository $commentRepository, PaginatorInterface $paginator, Request $request): Response
     {
-
-        // Hide drafts from the public; allow author or admin to view
         if (method_exists($post, 'getStatus') && 'published' !== $post->getStatus()) {
             $user = $this->getUser();
             $isAuthor = method_exists($post, 'getAuthor') && $user && $post->getAuthor() === $user;
@@ -96,7 +94,7 @@ class PostController extends AbstractController
         $commentPagination = $paginator->paginate(
             $queryBuilder,
             $page,
-            10 // number of comments per page
+            10
         );
 
         return $this->render('post/show.html.twig', [
@@ -122,7 +120,7 @@ class PostController extends AbstractController
     public function indexByTag(Tag $tag, Request $request, PostRepository $postRepository, PaginatorInterface $paginator): Response
     {
         $filters = new PostListFiltersDto(category: null, tag: $tag);
-        $qb = $postRepository->queryAll($filters);          // to samo, co w index
+        $qb = $postRepository->queryAll($filters);
 
         $pagination = $paginator->paginate(
             $qb,
@@ -132,7 +130,7 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', [
             'pagination' => $pagination,
-            'currentTag' => $tag,    // do wyświetlenia paska „aktywny filtr”
+            'currentTag' => $tag,
         ]);
     }
 
@@ -160,8 +158,6 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // VichUploaderBundle will handle the file upload automatically
-            // through its lifecycle events when the entity is persisted
             $this->postService->save($post);
 
             $this->addFlash(
@@ -201,8 +197,6 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // VichUploaderBundle will handle the file upload automatically
-            // through its lifecycle events when the entity is persisted
             $this->postService->save($post);
 
             $this->addFlash(
@@ -239,7 +233,6 @@ class PostController extends AbstractController
 
         $page = max(1, $request->query->getInt('page', 1));
 
-        // ?status=all|draft|published (opcjonalnie)
         $statusParam = $request->query->get('status');
         $status = \in_array($statusParam, ['draft', 'published'], true) ? $statusParam : null;
 
@@ -274,8 +267,6 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // VichUploaderBundle will handle file deletion automatically
-            // when the entity is removed
             $this->postService->delete($post);
 
             $this->addFlash(

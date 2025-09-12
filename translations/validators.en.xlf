@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="validators">
+        <body>
+            <trans-unit id="max_tags_3">
+                <source>Możesz wybrać maksymalnie 3 tagi.</source>
+                <target>You can select at most 3 tags.</target>
+            </trans-unit>
+            <trans-unit id="content_not_blank">
+                <source>Treść nie może być pusta</source>
+                <target>Content cannot be empty.</target>
+            </trans-unit>
+            <trans-unit id="email_not_blank">
+                <source>Email nie może być pusty</source>
+                <target>Email cannot be empty.</target>
+            </trans-unit>
+            <trans-unit id="email_valid">
+                <source>Podaj poprawny adres email</source>
+                <target>Please provide a valid email address.</target>
+            </trans-unit>
+            <trans-unit id="password_not_blank">
+                <source>Hasło nie może być puste</source>
+                <target>Password cannot be empty.</target>
+            </trans-unit>
+            <trans-unit id="password_min_length">
+                <source>Hasło musi mieć min. {{ limit }} znaków</source>
+                <target>Password must be at least {{ limit }} characters long.</target>
+            </trans-unit>
+            <trans-unit id="only_images_allowed">
+                <source>Dozwolone są tylko pliki JPG, PNG i GIF.</source>
+                <target>Only JPG, PNG and GIF files are allowed.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

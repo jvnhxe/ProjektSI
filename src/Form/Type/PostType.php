@@ -43,14 +43,14 @@ class PostType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'Title', // Zmieniona etykieta na "Title"
+                'label' => 'Title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]
         );
         $builder->add(
             'content',
-            TextareaType::class, // Changed from TextType to TextareaType for better content editing
+            TextareaType::class,
             [
                 'label' => 'label.content',
                 'required' => true,
@@ -72,26 +72,25 @@ class PostType extends AbstractType
             'postDate',
             DateTimeType::class,
             [
-                'label' => 'data', // Zmieniona etykieta na "Post Date"
+                'label' => 'data',
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker'],
             ]
         );
-        // Added image upload field
         $builder->add(
             'imageFile',
             VichImageType::class,
             [
                 'label' => 'image',
-                'required' => false, // Image is optional
-                'allow_delete' => true, // Allow users to delete the image
+                'required' => false,
+                'allow_delete' => true,
                 'delete_label' => 'Remove current image',
-                'download_uri' => false, // Don't show download link
-                'image_uri' => true, // Show current image preview
-                'imagine_pattern' => false, // Don't use imagine filters
+                'download_uri' => false,
+                'image_uri' => true,
+                'imagine_pattern' => false,
                 'attr' => [
-                    'accept' => 'image/*', // Only accept image files
+                    'accept' => 'image/*',
                     'class' => 'form-control',
                 ],
                 'help'  => 'form.post.image_help',
@@ -127,10 +126,11 @@ class PostType extends AbstractType
         'class'        => Tag::class,
         'choice_label' => 'name',
         'multiple'     => true,
-        'expanded'     => true,     // checkboxy (wygodne do limitu 3)
-        'by_reference' => false,    // ważne przy ManyToMany
+        'expanded'     => true,
+        'by_reference' => false,
         'required'     => false,
         'query_builder' => fn(TagRepository $tr) => $tr->createQueryBuilder('t')->orderBy('t.name', 'ASC'),
+            'label' => 'tags',
         'constraints'  => [
             new Count(max: 3, maxMessage: 'Możesz wybrać maksymalnie 3 tagi.')
         ],

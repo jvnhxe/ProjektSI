@@ -54,19 +54,9 @@ final class PostVoter extends Voter
         $user = $token->getUser();
 
         if (!$user instanceof User) {
-            // Niezalogowany – odmawiamy (VIEW opublikowanym ogarniemy niżej)
-            // tu wrócimy 'false', ale logikę "opublikowany dla wszystkich"
-            // rozwiążemy w kontrolerze przez brak IsGranted dla list/publicznych stron,
-            // natomiast dla show() użyjemy votera:
-            // VIEW: opublikowany -> true nawet dla anonima? Jeśli chcesz:
-            // odkomentuj poniższe 3 linie:
-            // if (self::VIEW === $attribute) {
-            //     return $subject->getStatus() === 'published';
-            // }
             return false;
         }
 
-        // Admin ma pełny dostęp
         if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
             return true;
         }

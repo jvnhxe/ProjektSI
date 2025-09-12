@@ -38,12 +38,6 @@ class Comment
     #[Assert\NotNull]
     private ?Post $post = null;
 
-    //    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    //    #[ORM\JoinColumn(nullable: false)]
-    //    #[Assert\NotBlank]
-    //    #[Assert\Type(User::class)]
-    //    private ?User $author;
-
     /**
      * @return int|null Id
      */
@@ -111,16 +105,4 @@ class Comment
 
         return $this;
     }
-
-    //    public function getAuthor(): ?User
-    //    {
-    //        return $this->author;
-    //    }
-    //
-    //    public function setAuthor(?User $author): static
-    //    {
-    //        $this->author = $author;
-    //
-    //        return $this;
-    //    }
 }

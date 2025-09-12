@@ -252,18 +252,37 @@ class UserController extends AbstractController
         );
     }
 
+
     /**
-     * Blokuje konto użytkownika (tylko dla administratora).
+     * Displays confirmation page for blocking a user.
      *
-     * Weryfikuje token CSRF, ustawia flagę blokady i zapisuje zmiany.
+     * @param User $user User entity to be blocked
      *
-     * @param Request              $request     Bieżące żądanie HTTP (z tokenem CSRF).
-     * @param User                 $user        Użytkownik, którego dotyczy akcja (parametr {id}).
-     * @param UserServiceInterface $userService Serwis zapisujący zmiany użytkownika.
-     *
-     * @return Response Przekierowanie do listy użytkowników po powodzeniu.
+     * @return Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route('/{id}/block', name: 'user_block', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(
+        '/{id}/block/confirm',
+        name: 'user_block_confirm',
+        methods: ['GET']
+    )]
+    #[IsGranted('ROLE_ADMIN')]
+    public function blockConfirm(User $user): Response
+    {
+        return $this->render('users/block.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Blokuje konto użytkownika (PATCH).
+     *
+     * @param Request              $request
+     * @param User                 $user
+     * @param UserServiceInterface $userService
+     *
+     * @return Response
+     */
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/block', name: 'user_block', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
     public function block(Request $request, User $user, UserServiceInterface $userService): Response
     {
@@ -274,21 +293,40 @@ class UserController extends AbstractController
         $user->setIsBlocked(true);
         $userService->save($user);
         $this->addFlash('success', 'Użytkownik zablokowany.');
+
         return $this->redirectToRoute('user_index');
     }
 
     /**
-     * Odblokowuje konto użytkownika (tylko dla administratora).
+     * Displays confirmation page for unblocking a user.
      *
-     * Weryfikuje token CSRF, zdejmuje flagę blokady i zapisuje zmiany.
+     * @param User $user User entity to be unblocked
      *
-     * @param Request              $request     Bieżące żądanie HTTP (z tokenem CSRF).
-     * @param User                 $user        Użytkownik, którego dotyczy akcja (parametr {id}).
-     * @param UserServiceInterface $userService Serwis zapisujący zmiany użytkownika.
-     *
-     * @return Response Przekierowanie do listy użytkowników po powodzeniu.
+     * @return Response
      */
-    #[\Symfony\Component\Routing\Attribute\Route('/{id}/unblock', name: 'user_unblock', methods: ['POST'])]
+    #[\Symfony\Component\Routing\Attribute\Route(
+        '/{id}/unblock/confirm',
+        name: 'user_unblock_confirm',
+        methods: ['GET']
+    )]
+    #[IsGranted('ROLE_ADMIN')]
+    public function unblockConfirm(User $user): Response
+    {
+        return $this->render('users/unblock.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * Odblokowuje konto użytkownika (PATCH).
+     *
+     * @param Request              $request
+     * @param User                 $user
+     * @param UserServiceInterface $userService
+     *
+     * @return Response
+     */
+    #[\Symfony\Component\Routing\Attribute\Route('/{id}/unblock', name: 'user_unblock', methods: ['PATCH'])]
     #[IsGranted('ROLE_ADMIN')]
     public function unblock(Request $request, User $user, UserServiceInterface $userService): Response
     {
@@ -299,6 +337,7 @@ class UserController extends AbstractController
         $user->setIsBlocked(false);
         $userService->save($user);
         $this->addFlash('success', 'Użytkownik odblokowany.');
+
         return $this->redirectToRoute('user_index');
     }
 }

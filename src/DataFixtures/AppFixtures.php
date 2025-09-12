@@ -27,11 +27,6 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-        // Implement data loading logic here
-        // Example:
-        // $product = new Product();
-        // $manager->persist($product);
-
         $manager->flush();
     }
 }

@@ -40,7 +40,6 @@ class CommentType extends AbstractType
                 new Assert\NotBlank(message: 'Treść nie może być pusta')
             ],
         ]);
-        // Uwaga: NIE dodajemy tu email/nick.
     }
 
     /**

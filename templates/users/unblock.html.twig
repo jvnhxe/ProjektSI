@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Odblokuj użytkownika'|trans }} {{ user.email }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Odblokować użytkownika'|trans }}: {{ user.email }}</h1>
+
+    <form method="post" action="{{ path('user_unblock', {id: user.id}) }}">
+        <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="_token" value="{{ csrf_token('unblock_user_' ~ user.id) }}">
+        <p>{{ 'Czy na pewno chcesz odblokować to konto?'|trans }}</p>
+
+        <button class="btn btn-success">{{ 'Odblokuj'|trans }}</button>
+        <a class="btn btn-link" href="{{ path('user_index') }}">{{ 'Anuluj'|trans }}</a>
+    </form>
+{% endblock %}
