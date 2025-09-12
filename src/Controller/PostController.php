@@ -109,10 +109,10 @@ class PostController extends AbstractController
      * Builds the list query with {@see PostRepository::queryAll()} using a {@see PostListFiltersDto}
      * that contains the selected Tag, paginates the results, and renders the standard index view.
      *
-     * @param Tag                 $tag             Tag resolved from {id}.
-     * @param Request             $request         Current HTTP request (reads ?page).
-     * @param PostRepository      $postRepository  Repository used to build the query.
-     * @param PaginatorInterface  $paginator       KNP paginator.
+     * @param Tag                $tag            Tag resolved from {id}.
+     * @param Request            $request        Current HTTP request (reads ?page).
+     * @param PostRepository     $postRepository Repository used to build the query.
+     * @param PaginatorInterface $paginator      KNP paginator.
      *
      * @return Response Rendered posts index filtered by the given tag.
      */

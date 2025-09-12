@@ -23,10 +23,10 @@ class PostListFiltersDto
     /**
      * PostListFiltersDto constructor.
      *
-     * @param Category|null           $category Category filter.
-     * @param Tag|null                $tag      Tag filter.
-     * @param \DateTimeInterface|null $dateFrom Date filter (from).
-     * @param \DateTimeInterface|null $dateTo   Date filter (to).
+     * @param Category|null           $category category filter
+     * @param Tag|null                $tag      tag filter
+     * @param \DateTimeInterface|null $dateFrom date filter (from)
+     * @param \DateTimeInterface|null $dateTo   date filter (to)
      */
     public function __construct(public ?Category $category = null, public ?Tag $tag = null, private readonly ?\DateTimeInterface $dateFrom = null, private readonly ?\DateTimeInterface $dateTo = null)
     {
@@ -35,7 +35,7 @@ class PostListFiltersDto
     /**
      * Get the category filter.
      *
-     * @return Category|null Category filter.
+     * @return Category|null category filter
      */
     public function getCategory(): ?Category
     {
@@ -45,7 +45,7 @@ class PostListFiltersDto
     /**
      * Get the tag filter.
      *
-     * @return Tag|null Tag filter.
+     * @return Tag|null tag filter
      */
     public function getTag(): ?Tag
     {
@@ -55,7 +55,7 @@ class PostListFiltersDto
     /**
      * Get the date filter (from).
      *
-     * @return \DateTimeInterface|null Date filter (from).
+     * @return \DateTimeInterface|null date filter (from)
      */
     public function getDateFrom(): ?\DateTimeInterface
     {
@@ -65,7 +65,7 @@ class PostListFiltersDto
     /**
      * Get the date filter (to).
      *
-     * @return \DateTimeInterface|null Date filter (to).
+     * @return \DateTimeInterface|null date filter (to)
      */
     public function getDateTo(): ?\DateTimeInterface
     {

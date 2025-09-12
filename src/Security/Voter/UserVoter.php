@@ -6,6 +6,7 @@
  *
  * @license MIT
  */
+
 namespace App\Security\Voter;
 
 use App\Entity\User;
@@ -26,7 +27,7 @@ class UserVoter extends Voter
     public const EDIT_PASSWORD = 'USER_EDIT';
 
     /**
-     * @param Security $security Serwis bezpieczeństwa do sprawdzenia ról.
+     * @param Security $security serwis bezpieczeństwa do sprawdzenia ról
      */
     public function __construct(private Security $security)
     {
@@ -35,14 +36,14 @@ class UserVoter extends Voter
     /**
      * Sprawdza, czy ten voter obsługuje dany atrybut i subject.
      *
-     * @param string     $attribute Nazwa atrybutu (np. USER_EDIT)
-     * @param mixed      $subject   Oczekiwany: App\Entity\User
+     * @param string $attribute Nazwa atrybutu (np. USER_EDIT)
+     * @param mixed  $subject   Oczekiwany: App\Entity\User
      *
      * @return bool True, jeżeli voter powinien rozpatrywać żądanie
      */
     protected function supports(string $attribute, $subject): bool
     {
-        return $attribute === self::EDIT_PASSWORD && $subject instanceof User;
+        return self::EDIT_PASSWORD === $attribute && $subject instanceof User;
     }
 
     /**

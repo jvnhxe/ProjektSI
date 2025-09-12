@@ -21,7 +21,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class TagService implements TagServiceInterface
 {
     /**
-     * @param TagRepository $tagRepository
+     * @param TagRepository          $tagRepository
      * @param EntityManagerInterface $em
      */
     public function __construct(private readonly TagRepository $tagRepository, private readonly EntityManagerInterface $em)

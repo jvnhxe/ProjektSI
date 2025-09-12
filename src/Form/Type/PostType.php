@@ -123,19 +123,19 @@ class PostType extends AbstractType
         );
 
         $builder->add('tags', EntityType::class, [
-        'class'        => Tag::class,
-        'choice_label' => 'name',
-        'multiple'     => true,
-        'expanded'     => true,
-        'by_reference' => false,
-        'required'     => false,
-        'query_builder' => fn(TagRepository $tr) => $tr->createQueryBuilder('t')->orderBy('t.name', 'ASC'),
+            'class'        => Tag::class,
+            'choice_label' => 'name',
+            'multiple'     => true,
+            'expanded'     => true,
+            'by_reference' => false,
+            'required'     => false,
+            'query_builder' => fn (TagRepository $tr) => $tr->createQueryBuilder('t')->orderBy('t.name', 'ASC'),
             'label' => 'tags',
-        'constraints'  => [
-            new Count(max: 3, maxMessage: 'Możesz wybrać maksymalnie 3 tagi.')
-        ],
-        'help' => 'Wybierz do 3 tagów.',
-    ]);
+            'constraints'  => [
+                new Count(max: 3, maxMessage: 'Możesz wybrać maksymalnie 3 tagi.'),
+            ],
+            'help' => 'Wybierz do 3 tagów.',
+        ]);
     }
 
     /**

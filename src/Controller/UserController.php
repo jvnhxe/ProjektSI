@@ -198,7 +198,6 @@ class UserController extends AbstractController
             );
 
             return $this->redirectToRoute('main_index');
-
         }
 
         return $this->render(

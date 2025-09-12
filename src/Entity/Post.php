@@ -336,7 +336,10 @@ class Post
     }
 
     /** @return Collection<int, Tag> */
-    public function getTags(): Collection { return $this->tags; }
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
 
     /**
      * Adds a tag to the post if it is not already assigned.
@@ -367,5 +370,4 @@ class Post
 
         return $this;
     }
-
 }

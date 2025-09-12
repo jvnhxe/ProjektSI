@@ -34,10 +34,10 @@ class CommentType extends AbstractType
             'label' => 'Treść (Markdown)',
             'attr' => [
                 'rows' => 8,
-                'placeholder' => 'Twoja odpowiedź w Markdown (np. **pogrubienie**, _kursywa_, `kod`)'
+                'placeholder' => 'Twoja odpowiedź w Markdown (np. **pogrubienie**, _kursywa_, `kod`)',
             ],
             'constraints' => [
-                new Assert\NotBlank(message: 'Treść nie może być pusta')
+                new Assert\NotBlank(message: 'Treść nie może być pusta'),
             ],
         ]);
     }

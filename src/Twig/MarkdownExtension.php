@@ -21,17 +21,20 @@ use Twig\TwigFilter;
 class MarkdownExtension extends AbstractExtension
 {
     /**
-     * @param MarkdownConverter $converter Service used to convert Markdown to HTML.
+     * @param MarkdownConverter $converter service used to convert Markdown to HTML
      */
-    public function __construct(private MarkdownConverter $converter) {}
+    public function __construct(private MarkdownConverter $converter)
+    {
+    }
 
     /**
      * Registers Twig filters provided by this extension.
      *
-     * @return array<int, TwigFilter> List of filters (marked as returning safe HTML).
+     * @return array<int, TwigFilter> list of filters (marked as returning safe HTML)
      */
     public function getFilters(): array
     {
+        // is_safe: ['html'] – inform Twig the filter output is already safe HTML
         return [
             new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
         ];

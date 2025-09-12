@@ -47,12 +47,12 @@ class TagController extends AbstractController
     /**
      * Creates a new tag.
      *
-     * @param Request              $request    HTTP request with form data.
-     * @param TagServiceInterface  $tagService Tag domain service.
+     * @param Request             $request    HTTP request with form data.
+     * @param TagServiceInterface $tagService Tag domain service.
      *
      * @return Response Rendered form or redirect after creation.
      */
-    #[Route('/new', name: 'tag_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TagServiceInterface $tagService): Response
     {
         $tag = new Tag();
@@ -75,13 +75,13 @@ class TagController extends AbstractController
     /**
      * Edits an existing tag.
      *
-     * @param Tag                  $tag        Tag to edit (resolved from {id}).
-     * @param Request              $request    HTTP request with form data.
-     * @param TagServiceInterface  $tagService Tag domain service.
+     * @param Tag                 $tag        Tag to edit (resolved from {id}).
+     * @param Request             $request    HTTP request with form data.
+     * @param TagServiceInterface $tagService Tag domain service.
      *
      * @return Response Rendered form or redirect after save.
      */
-    #[Route('/{id}/edit', name: 'tag_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'tag_edit', methods: ['GET', 'POST'])]
     public function edit(Tag $tag, Request $request, TagServiceInterface $tagService): Response
     {
         $form = $this->createForm(TagType::class, $tag);
@@ -103,9 +103,9 @@ class TagController extends AbstractController
     /**
      * Deletes a tag (CSRF protected).
      *
-     * @param Tag                  $tag        Tag to delete (resolved from {id}).
-     * @param Request              $request    HTTP request containing CSRF token.
-     * @param TagServiceInterface  $tagService Tag domain service.
+     * @param Tag                 $tag        Tag to delete (resolved from {id}).
+     * @param Request             $request    HTTP request containing CSRF token.
+     * @param TagServiceInterface $tagService Tag domain service.
      *
      * @return Response Redirect to tags index.
      */

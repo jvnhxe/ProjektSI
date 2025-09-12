@@ -66,7 +66,6 @@ class PostRepository extends ServiceEntityRepository
         return $this->applyFiltersToList($queryBuilder, $filters);
     }
 
-
     /**
      * Query posts for given author. Optionally filter by status ('draft'/'published').
      *

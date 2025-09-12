@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -22,9 +21,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\User;
 use App\Form\Type\RegistrationType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 /**
  * Class LoginFormAuthenticator.
@@ -138,10 +135,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      *
      * On initial GET (or when validation fails), the registration form is rendered.
      *
-     * @param Request               $request     Current HTTP request carrying form data.
-     * @param UserServiceInterface  $userService Application service used to persist the user.
+     * @param Request              $request     current HTTP request carrying form data
+     * @param UserServiceInterface $userService application service used to persist the user
      *
-     * @return Response Renders the registration form or redirects to the login route on success.
+     * @return Response renders the registration form or redirects to the login route on success
      *
      * @see app_login
      * @see registration/register.html.twig
@@ -177,5 +174,4 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
 }

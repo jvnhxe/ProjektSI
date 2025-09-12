@@ -30,11 +30,9 @@ class UserChecker implements UserCheckerInterface
      * If the provided user is an instance of {@see User} and is marked as blocked,
      * authentication will be denied with a user-friendly message.
      *
-     * @param UserInterface $user The user being authenticated.
+     * @param UserInterface $user the user being authenticated
      *
-     * @return void
-     *
-     * @throws CustomUserMessageAccountStatusException When the account is blocked.
+     * @throws CustomUserMessageAccountStatusException when the account is blocked
      */
     public function checkPreAuth(UserInterface $user): void
     {
@@ -52,9 +50,7 @@ class UserChecker implements UserCheckerInterface
      *
      * Placeholder for additional checks; currently no-op.
      *
-     * @param UserInterface $user The authenticated user.
-     *
-     * @return void
+     * @param UserInterface $user the authenticated user
      */
     public function checkPostAuth(UserInterface $user): void
     {
